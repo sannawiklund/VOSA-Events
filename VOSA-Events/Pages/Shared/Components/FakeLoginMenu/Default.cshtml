@@ -1,0 +1,10 @@
+﻿@using VOSA_Events.Models;
+@model IEnumerable<SelectListItem>;
+
+<form method="post" asp-page="/FakeLogin">
+    <label>
+        Log in as:
+        <select asp-items="@Model" name="AccountID" id="account-id"></select>
+    </label>
+    <button type="submit">Log In</button>
+</form>
