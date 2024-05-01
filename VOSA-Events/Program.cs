@@ -81,7 +81,10 @@ builder.Services.AddAuthorization(options =>
         .Build();
 });
 
-builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+builder.Services.AddRazorPages(options =>
+{
+    //Lägg till de sidor som kräver en viss behörighet för att visa. 
+}).AddRazorRuntimeCompilation(); 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddControllers();
 
