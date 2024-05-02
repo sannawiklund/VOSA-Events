@@ -1,8 +1,98 @@
 ﻿@page
 @model IndexModel
 @inject VOSA_Events.Data.AccessControl accessControl
-@{
-    ViewData["Title"] = "Home page";
-}
 
-<h1>Welcome, @accessControl.LoggedInAccountName!</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewData["Title"]</title>
+	<meta charset="UTF-8">
+	
+</head>
+<body>
+
+	<header>
+			<h1>Welcome, @accessControl.LoggedInAccountName!</h1>
+			<h2>VOSA-EVENTS </h2>
+	</header>
+	
+	@* <nav>
+		<ul class="list-container">
+			<li><a asp-page="./Index">Products</a></li>
+			<li><a asp-page="./Cart">Cart</a></li>
+		</ul>
+	</nav> *@
+
+	<form method="get">
+		<div class="search-container">
+
+			<label for="searchInput">Search for a product:</label>
+			<input id="searchInput" type="text" name="searchItem" placeholder="Search for an event..">
+			<input type="hidden" name="pageNumber" value="1" />
+
+			<label for="categorySelect">Pick a category:</label>
+			<select id="categorySelect" name="category">
+				<option>Any category</option>
+			</select>
+			<label for="citySelect">Pick a city:</label>
+			<select id="citySelect" name="city">
+				<option>Any city</option>
+				<option>Göteborg</option>
+				<option>Skövde</option>
+				<option>Borås</option>
+				<option>Vänersborg</option>
+				<option>Trollhättan</option>
+				<option>Uddevalla</option>
+				<option>Strömstad</option>
+				<option>Kungälv</option>
+				<option>Skara</option>
+			</select>
+			<label for="dateSelect">Date:</label>
+			<select id="dateSelect" name="date">
+				<option>Closest in time</option>
+				<option>Farthest in time</option>
+			</select>
+
+			<button id="submit" type="submit">Search</button>
+		</div>
+	</form>
+
+	<main class="product-grid">
+		@if (Model.Events.Any())
+		{
+				@foreach (var product in Model.Events)
+				{
+					<article class="product-container">
+						<div class="image-details">
+							<h2>@product.Name</h2>
+							<p>@product.Price$</p>
+@* 							<a asp-page="./Details" asp-route-id="@product.Id">Show details</a>
+ *@						</div>
+					</article>
+				}
+		}
+		else
+		{
+			<p>No products found.</p>
+		}
+	</main>
+
+	<footer class=" button-section">
+
+		@if (Model.PageNumber > 1)
+		{
+			<a asp-page="./Index" asp-route-pageNumber="@(Model.PageNumber - 1)" asp-route-category="@Model.Category" class="previous-button">Previous</a>
+		}
+
+		@if (Model.PageNumber < Model.TotalPages)
+		{
+			<a asp-page="./Index" asp-route-pageNumber="@(Model.PageNumber + 1)" asp-route-category="@Model.Category" class="next-button">Next</a>
+		}
+
+		
+	</footer>
+</body>
+</html>
