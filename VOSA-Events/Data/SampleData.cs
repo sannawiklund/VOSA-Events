@@ -135,10 +135,10 @@ namespace VOSA_Events.Data
 
 				database.Events.Add(new Event
 				{
-					Name = "Mölndals Ölfestival",
-					Description = "En festival för ölälskare med ett brett urval av lokala och internationella ölsorter. Adress: Slottsmöllan, 431 37 Mölndal",
+					Name = "Göteborgs Ölfestival",
+					Description = "En festival för ölälskare med ett brett urval av lokala och internationella ölsorter. Adress: Slottsmöllan, 431 37 Göteborg",
 					Price = 180,
-					City = "Mölndal",
+					City = "Göteborg",
 					TicketQuantity = 400,
 					Date = new DateTime(2024, 8, 31, 15, 0, 0)
 				});
