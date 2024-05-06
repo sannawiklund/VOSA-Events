@@ -21,6 +21,12 @@ namespace VOSA_Events.Pages
         public Account Account { get; set; }
 
 
+        public int EventId { get; set; }
+        public string ReveiwText { get; set; }
+        public int Rating { get; set; }
+
+
+
         //Metoder
         public void OnGet()
         {
@@ -32,7 +38,15 @@ namespace VOSA_Events.Pages
 
         public void OnPost()
         {
+            var review = new Review()
+            {
+                EventID = EventId,
+                Description = ReveiwText,
+                Rating = Rating
+            };
 
+            database.Reviews.Add(review);
+            database.SaveChanges();
         }
     }
 }
