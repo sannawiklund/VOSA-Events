@@ -45,14 +45,14 @@
 	<main class="event-grid">
 		@if (Model.Events.Any())
 		{
-				@foreach (var product in Model.Events)
+				@foreach (var events in Model.Events)
 				{
 					<article>
 						
 @* 							Lägga till bild i sampleData?
  *@							<h2>@events.Name</h2>
 							<p>@events.Price$</p>
- 							<a asp-page="./EventDetails" asp-route-id="@events.Id">Show details</a>
+ 							<a asp-page="./EventDetails" asp-route-id="@events.ID">Show details</a>
  						
 					</article>
 				}
