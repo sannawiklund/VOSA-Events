@@ -84,6 +84,30 @@ namespace VOSA_Events.Data
 				});
 
 			}
+			database.SaveChanges();
+
+			if (!database.Categories.Any())
+
+			{
+				database.Categories.Add(new Category
+				{
+					Name = "Mat & Dryck",
+
+				});
+
+				database.Categories.Add(new Category
+				{
+					Name = "Mat",
+				});
+
+				database.Categories.Add(new Category
+				{
+					Name = "Dryck"
+				});
+			}
+
+			database.SaveChanges();
+
 
 			if (!database.Events.Any())
 
@@ -96,7 +120,8 @@ namespace VOSA_Events.Data
 					City = "Göteborg",
 					TicketQuantity = 500,
 					Date = new DateTime(2024, 8, 10, 10, 0, 0),
-					AdminAccountID = 1
+					AdminAccountID = 2,
+					CategoryID = 1
 				});
 
 				database.Events.Add(new Event
@@ -107,7 +132,8 @@ namespace VOSA_Events.Data
 					City = "Göteborg",
 					TicketQuantity = 300,
 					Date = new DateTime(2024, 11, 29, 12, 0, 0),
-					AdminAccountID = 2
+					AdminAccountID = 2,
+					CategoryID = 1
 
 				});
 
@@ -119,8 +145,8 @@ namespace VOSA_Events.Data
 					City = "Skövde",
 					TicketQuantity = 200,
 					Date = new DateTime(2024, 6, 15, 11, 0, 0),
-					AdminAccountID = 3
-
+					AdminAccountID = 3,
+					CategoryID = 2
 				});
 
 				database.Events.Add(new Event
@@ -155,8 +181,8 @@ namespace VOSA_Events.Data
 					City = "Uddevalla",
 					TicketQuantity = 250,
 					Date = new DateTime(2024, 10, 12, 13, 0, 0),
-					AdminAccountID = 1
-					
+					AdminAccountID = 1,
+					CategoryID = 1
 				});
 
 				database.Events.Add(new Event
@@ -221,29 +247,8 @@ namespace VOSA_Events.Data
 				});
 			}
 
-
 			database.SaveChanges();
 
-			if (!database.Categories.Any())
-
-			{
-				database.Categories.Add(new Category
-				{
-					Name = "Mat & Dryck",
-				});
-
-				database.Categories.Add(new Category
-				{
-					Name = "Mat",
-				});
-
-				database.Categories.Add(new Category
-				{
-					Name = "Dryck"
-				});
-			}
-
-			database.SaveChanges();
 		}
 	}
 }

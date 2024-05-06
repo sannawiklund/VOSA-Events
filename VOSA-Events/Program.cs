@@ -15,39 +15,53 @@ builder.Services.AddAuthentication(options =>
 })
 .AddCookie(options =>
 {
-    // When a user logs in to Google for the first time, create a local account for that user in our database.
-    options.Events.OnValidatePrincipal += async context =>
-    {
-        var serviceProvider = context.HttpContext.RequestServices;
-        using var db = new AppDbContext(serviceProvider.GetRequiredService<DbContextOptions<AppDbContext>>());
+	// When a user logs in to Google for the first time, create a local account for that user in our database.
+	options.Events.OnValidatePrincipal += async context =>
+	{
+		var serviceProvider = context.HttpContext.RequestServices;
+		using var db = new AppDbContext(serviceProvider.GetRequiredService<DbContextOptions<AppDbContext>>());
 
-        string subject = context.Principal.FindFirstValue(ClaimTypes.NameIdentifier);
-        string issuer = context.Principal.FindFirst(ClaimTypes.NameIdentifier).Issuer;
-        string name = context.Principal.FindFirst(ClaimTypes.Name).Value;
-        string role = context.Principal.FindFirst(ClaimTypes.Role).Value;
+		string subject = context.Principal.FindFirstValue(ClaimTypes.NameIdentifier);
+		string issuer = context.Principal.FindFirst(ClaimTypes.NameIdentifier).Issuer;
+		string name = context.Principal.FindFirst(ClaimTypes.Name).Value;
 
-        var account = db.Accounts
-            .FirstOrDefault(p => p.OpenIDIssuer == issuer && p.OpenIDSubject == subject);
+		// Hämta rollen från databasen baserat på användarens NameIdentifier
+		var accountFromDb = db.Accounts.FirstOrDefault(p => p.OpenIDIssuer == issuer && p.OpenIDSubject == subject);
 
-        if (account == null)
-        {
-            account = new Account
-            {
-                OpenIDIssuer = issuer,
-                OpenIDSubject = subject,
-                Name = name,
-                Role = role
-            };
-            db.Accounts.Add(account);
-        }
-        else
-        {
-            // If the account already exists, just update the name in case it has changed.
-            account.Name = name;
-        }
+		string role = "DefaultRole"; // Standardroll om ingen matchning hittas
 
-        await db.SaveChangesAsync();
-    };
+		if (accountFromDb != null)
+		{
+			// Om Account finns, tilldela användarens roll
+			role = accountFromDb.Role;
+		}
+
+		// Kontrollera om rollen är giltig (admin eller user), annars använd standardrollen
+		if (role != "Admin" && role != "User")
+		{
+			role = "DefaultRole";
+		}
+
+		if (accountFromDb == null)
+		{
+			accountFromDb = new Account
+			{
+				OpenIDIssuer = issuer,
+				OpenIDSubject = subject,
+				Name = name,
+				Role = role
+			};
+			db.Accounts.Add(accountFromDb);
+		}
+		else
+		{
+			// If the account already exists, just update the name in case it has changed.
+			accountFromDb.Name = name;
+		}
+
+		await db.SaveChangesAsync();
+	};
+
 
 	options.Events.OnValidatePrincipal += async context =>
 	{
