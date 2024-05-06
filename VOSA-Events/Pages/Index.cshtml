@@ -1,8 +1,81 @@
 ﻿@page
 @model IndexModel
 @inject VOSA_Events.Data.AccessControl accessControl
-@{
-    ViewData["Title"] = "Home page";
-}
 
-<h1>Welcome, @accessControl.LoggedInAccountName!</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewData["Title"]</title>
+	<meta charset="UTF-8">
+	
+</head>
+<body>
+
+	<header>
+			<h1>Welcome, @accessControl.LoggedInAccountName!</h1>
+		<h2><a asp-page="./Index">VOSA-EVENTS</a></h2>
+	</header>
+	
+@* 	Skapa navigationsmeny?
+ *@
+	<form method="get">
+
+			<label for="searchInput">Search for an event:</label>
+			<input id="searchInput" type="text" name="searchItem" placeholder="Search for an event..">
+			<input type="hidden" name="pageNumber" value="1" />
+
+			<label for="categorySelect">Pick a category:</label>
+			<select name="category">
+				<option>Any category</option>
+			</select>
+			
+			<label for="dateSelect">Date:</label>
+			<select id="dateSelect" name="date">
+				<option>Closest in time</option>
+				<option>Farthest in time</option>
+			</select>
+
+			<button id="submit" type="submit">Search</button>
+		
+	</form>
+
+	<main class="event-grid">
+		@if (Model.Events.Any())
+		{
+				@foreach (var events in Model.Events)
+				{
+					<article>
+						
+@* 							Lägga till bild i sampleData?
+ *@							<h2>@events.Name</h2>
+							<p>@events.Price$</p>
+ 							<a asp-page="./EventDetails" asp-route-id="@events.ID">Show details</a>
+ 						
+					</article>
+				}
+		}
+		else
+		{
+			<p>No products found.</p>
+		}
+	</main>
+
+	<footer>
+
+		@if (Model.PageNumber > 1)
+		{
+			<a asp-page="./Index" asp-route-pageNumber="@(Model.PageNumber - 1)" asp-route-category="@Model.Category" class="previous-button">Previous</a>
+		}
+
+		@if (Model.PageNumber < Model.TotalPages)
+		{
+			<a asp-page="./Index" asp-route-pageNumber="@(Model.PageNumber + 1)" asp-route-category="@Model.Category" class="next-button">Next</a>
+		}
+
+		
+	</footer>
+</body>
+</html>
