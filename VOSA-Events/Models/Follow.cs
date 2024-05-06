@@ -1,6 +1,6 @@
 ﻿namespace VOSA_Events.Models
 {
-    public class Watch
+    public class Follow
     {
         public int AccountID { get; set; }
         public virtual Account Account { get; set; }

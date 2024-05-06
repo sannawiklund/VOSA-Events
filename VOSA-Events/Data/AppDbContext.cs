@@ -10,7 +10,7 @@ namespace VOSA_Events.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<Booking> Bookings { get; set; }
-        public DbSet<Watch> Watches { get; set; }
+        public DbSet<Follow> Follows { get; set; }
 
         public DbSet<Review> Reviews { get; set; }
 
@@ -32,15 +32,45 @@ namespace VOSA_Events.Data
                 .HasForeignKey(e => e.AdminAccountID);
 
             modelBuilder.Entity<Booking>()
-                .HasOne(t => t.Account)
+                .HasOne(b => b.Account)
             .WithMany(a => a.Bookings)
-                .HasForeignKey(t => t.AccountID)
+                .HasForeignKey(b => b.AccountID)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Booking>()
-                .HasOne(t => t.Event)
+                .HasOne(b => b.Event)
                 .WithMany(e => e.Bookings)
-                .HasForeignKey(t => t.EventID);
+                .HasForeignKey(b => b.EventID);
+
+            modelBuilder.Entity<Follow>()
+                .HasKey(f => new {f.EventID, f.AccountID});
+
+            modelBuilder.Entity<Follow>()
+                .HasOne(f => f.Account)
+                .WithMany()
+                .HasForeignKey(f => f.AccountID)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Follow>()
+                .HasOne(f => f.Event)
+                .WithMany()
+                .HasForeignKey(f => f.EventID)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Review>()
+               .HasKey(r => new { r.EventID, r.AccountID});
+
+            modelBuilder.Entity<Review>()
+                .HasOne(r => r.Account)
+                .WithMany()
+                .HasForeignKey(r => r.AccountID)
+                .OnDelete(DeleteBehavior.NoAction);
+           
+            modelBuilder.Entity<Review>()
+             .HasOne(r => r.Event)
+             .WithMany()
+             .HasForeignKey(r => r.EventID)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

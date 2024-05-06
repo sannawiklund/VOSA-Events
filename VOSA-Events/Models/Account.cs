@@ -4,11 +4,11 @@
     {
         public int ID { get; set; }
         public string Name { get; set; } //First and last name
-        public string PhoneNumber { get; set; }
-        public bool IsAdmin { get; set; }
-        public int AdminCode { get; set; }
+        public string? PhoneNumber { get; set; }
+        public bool? IsAdmin { get; set; }
+        public int? AdminCode { get; set; }
 
-        public string Role { get; set; } //Admin eller user
+        public string? Role { get; set; } //Admin eller user
 
         public virtual List<Booking> Bookings { get; set; }
         public virtual List<Event> BookmarkedEvents { get; set; } //Bevakade events
