@@ -1,4 +1,6 @@
-﻿using VOSA_Events.Models;
+﻿using System.Data;
+using System.Xml.Linq;
+using VOSA_Events.Models;
 
 namespace VOSA_Events.Data
 {
@@ -14,20 +16,73 @@ namespace VOSA_Events.Data
 				{
 					OpenIDIssuer = fakeIssuer,
 					OpenIDSubject = "1111111111",
-					Name = "Brad"
+					Name = "John Smith",
+					Role = "Admin"
 				});
 				database.Accounts.Add(new Account
 				{
 					OpenIDIssuer = fakeIssuer,
 					OpenIDSubject = "2222222222",
-					Name = "Angelina"
+					Name = "Emily Johnson",
+					Role = "Admin"
 				});
 				database.Accounts.Add(new Account
 				{
 					OpenIDIssuer = fakeIssuer,
 					OpenIDSubject = "3333333333",
-					Name = "Will"
+					Name = "Michael Williams",
+					Role = "Admin"
 				});
+				database.Accounts.Add(new Account
+				{
+					OpenIDIssuer = fakeIssuer,
+					OpenIDSubject = "4444444444",
+					Name = "Jessica Brown",
+					Role = "Admin"
+				});
+				database.Accounts.Add(new Account
+				{
+					OpenIDIssuer = fakeIssuer,
+					OpenIDSubject = "5555555555",
+					Name = "David Martinez",
+					Role = "Admin"
+				});
+				database.Accounts.Add(new Account
+				{
+					OpenIDIssuer = fakeIssuer,
+					OpenIDSubject = "6666666666",
+					Name = "Amanda Wilson",
+					Role = "User"
+				});
+				database.Accounts.Add(new Account
+				{
+					OpenIDIssuer = fakeIssuer,
+					OpenIDSubject = "7777777777",
+					Name = "Daniel Taylor",
+					Role = "User"
+				});
+				database.Accounts.Add(new Account
+				{
+					OpenIDIssuer = fakeIssuer,
+					OpenIDSubject = "8888888888",
+					Name = "Jennifer Lee",
+					Role = "User"
+				});
+				database.Accounts.Add(new Account
+				{
+					OpenIDIssuer = fakeIssuer,
+					OpenIDSubject = "9999999999",
+					Name = "Christopher Clark",
+					Role = "User"
+				});
+				database.Accounts.Add(new Account
+				{
+					OpenIDIssuer = fakeIssuer,
+					OpenIDSubject = "1010101010",
+					Name = "Sarah Rodriguez",
+					Role = "User"
+				});
+
 			}
 
 			if (!database.Events.Any())
@@ -40,7 +95,8 @@ namespace VOSA_Events.Data
 					Price = 150,
 					City = "Göteborg",
 					TicketQuantity = 500,
-					Date = new DateTime(2024, 8, 10, 10, 0, 0)
+					Date = new DateTime(2024, 8, 10, 10, 0, 0),
+					AdminAccountID = 1
 				});
 
 				database.Events.Add(new Event
@@ -50,7 +106,9 @@ namespace VOSA_Events.Data
 					Price = 100,
 					City = "Göteborg",
 					TicketQuantity = 300,
-					Date = new DateTime(2024, 11, 29, 12, 0, 0)
+					Date = new DateTime(2024, 11, 29, 12, 0, 0),
+					AdminAccountID = 2
+
 				});
 
 				database.Events.Add(new Event
@@ -60,7 +118,9 @@ namespace VOSA_Events.Data
 					Price = 80,
 					City = "Skövde",
 					TicketQuantity = 200,
-					Date = new DateTime(2024, 6, 15, 11, 0, 0)
+					Date = new DateTime(2024, 6, 15, 11, 0, 0),
+					AdminAccountID = 3
+
 				});
 
 				database.Events.Add(new Event
@@ -70,7 +130,8 @@ namespace VOSA_Events.Data
 					Price = 200,
 					City = "Borås",
 					TicketQuantity = 150,
-					Date = new DateTime(2024, 9, 20, 9, 30, 0)
+					Date = new DateTime(2024, 9, 20, 9, 30, 0),
+					AdminAccountID = 4
 				});
 
 				database.Events.Add(new Event
@@ -80,7 +141,8 @@ namespace VOSA_Events.Data
 					Price = 120,
 					City = "Vänersborg",
 					TicketQuantity = 400,
-					Date = new DateTime(2024, 7, 5, 10, 30, 0)
+					Date = new DateTime(2024, 7, 5, 10, 30, 0),
+					AdminAccountID = 5
 				});
 
 				database.Events.Add(new Event
@@ -90,7 +152,8 @@ namespace VOSA_Events.Data
 					Price = 75,
 					City = "Uddevalla",
 					TicketQuantity = 250,
-					Date = new DateTime(2024, 10, 12, 13, 0, 0)
+					Date = new DateTime(2024, 10, 12, 13, 0, 0),
+					AdminAccountID = 1
 				});
 
 				database.Events.Add(new Event
@@ -100,7 +163,8 @@ namespace VOSA_Events.Data
 					Price = 90,
 					City = "Trollhättan",
 					TicketQuantity = 350,
-					Date = new DateTime(2024, 8, 25, 14, 0, 0)
+					Date = new DateTime(2024, 8, 25, 14, 0, 0),
+					AdminAccountID = 2
 				});
 
 				database.Events.Add(new Event
@@ -110,7 +174,8 @@ namespace VOSA_Events.Data
 					Price = 60,
 					City = "Strömstad",
 					TicketQuantity = 180,
-					Date = new DateTime(2024, 9, 30, 11, 30, 0)
+					Date = new DateTime(2024, 9, 30, 11, 30, 0),
+					AdminAccountID = 3
 				});
 
 				database.Events.Add(new Event
@@ -120,7 +185,8 @@ namespace VOSA_Events.Data
 					Price = 50,
 					City = "Kungälv",
 					TicketQuantity = 200,
-					Date = new DateTime(2024, 11, 10, 10, 0, 0)
+					Date = new DateTime(2024, 11, 10, 10, 0, 0),
+					AdminAccountID = 4
 				});
 
 				database.Events.Add(new Event
@@ -130,7 +196,8 @@ namespace VOSA_Events.Data
 					Price = 70,
 					City = "Skara",
 					TicketQuantity = 300,
-					Date = new DateTime(2024, 7, 20, 12, 30, 0)
+					Date = new DateTime(2024, 7, 20, 12, 30, 0),
+					AdminAccountID = 5
 				});
 
 				database.Events.Add(new Event
@@ -140,7 +207,8 @@ namespace VOSA_Events.Data
 					Price = 180,
 					City = "Göteborg",
 					TicketQuantity = 400,
-					Date = new DateTime(2024, 8, 31, 15, 0, 0)
+					Date = new DateTime(2024, 8, 31, 15, 0, 0),
+					AdminAccountID = 1
 				});
 			}
 
