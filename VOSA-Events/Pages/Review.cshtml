@@ -1,0 +1,51 @@
+@page
+@model VOSA_Events.Pages.ReviewModel
+@inject VOSA_Events.Data.AccessControl accessControl
+@{
+    ViewData["Title"] = "Review Page";
+}
+
+<div id="review-page">
+
+    <div id="header">
+        <h1>Reviews</h1>
+        <form>
+            @* Om man vill välja på kategori, t ex *@
+            <select>
+                <option></option>
+            </select>
+        </form>
+    </div>
+
+    <div id="main">
+        <div class="event-list">
+            @foreach (var events in Model.Events)
+            {
+                <a asp-page="./EventDetails" asp-route-id="@events.ID" class="event-link">
+
+                    <h2>@events.Name</h2>
+                    @* Lägg till fler parametrar här *@
+
+
+                    <a asp-page="./EventDetails" asp-route-id="@events.ID" class="event-link">
+                        <input type="button" name="id" value="@events.ID" class="event-id" />
+                        <button type="submit" class="review-button">See reviews</button>
+                    </a>
+
+                    <form method="post" asp-page="./EventDetails">
+                        <input type="hidden" name="eventID" value="@events.ID" class="event-id" />
+                        <button type="submit" class="review-button">Leave a review</button>
+                    </form>
+
+                </a>
+            }
+        </div>
+
+        @if (Model.Events.Count == 0)
+        {
+            <p>No events found.</p>
+        }
+    </div>
+
+
+</div>
