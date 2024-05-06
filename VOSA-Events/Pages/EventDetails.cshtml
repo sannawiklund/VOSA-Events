@@ -2,3 +2,38 @@
 @model VOSA_Events.Pages.EventDetailsModel
 @{
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Event Details</title>
+</head> 
+<body>
+	<h2><a asp-page="./Index">VOSA-EVENTS</a></h2>
+	<main>
+		<h2>Event Details</h2>
+		<section>
+			<img src="Pictures/@Model.Event.ImagePath" alt="Event Image">
+				<h3>@Model.Event.Name</h3>
+				<p>@Model.Event.Description</p>
+				<p>Price: @Model.Event.Price$</p>
+
+				<form method="post">
+				<select id="categorySelect" name="category">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select>
+					<input type="hidden" name="id" value="@Model.Event.ID">
+					<button type="submit">Add to cart</button>
+				</form>
+				<button class="return-button">
+					<a asp-page="./Index">Return to events</a>
+				</button>
+		</section>
+	</main>
+</body>
+</html>

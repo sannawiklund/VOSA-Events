@@ -24,16 +24,16 @@ namespace VOSA_Events.Pages
 		{
 			Event = database.Events.Find(id);
 		}
-		public IActionResult OnPost(int id)
+		public IActionResult OnPost(int quantity, int id )
 		{
 
 			var loggedInUserId = accessControl.LoggedInAccountID;
 
-			var existingEvent = database.Bookings.SingleOrDefault(ap => ap.AccountID == loggedInUserId && ap.EventID == id);
+			var existingEvent = database.Bookings.SingleOrDefault(b => b.AccountID == loggedInUserId && b.EventID == id);
 
 			if (existingEvent != null)
 			{
-				existingEvent.Quantity++;
+				existingEvent.Quantity += quantity;
 			}
 
 			else
@@ -42,7 +42,7 @@ namespace VOSA_Events.Pages
 				{
 					EventID = id,
 					AccountID = loggedInUserId,
-					Quantity = 1
+					Quantity = quantity
 				};
 
 				database.Bookings.Add(bookings);
