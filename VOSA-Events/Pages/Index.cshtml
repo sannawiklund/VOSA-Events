@@ -16,40 +16,22 @@
 
 	<header>
 			<h1>Welcome, @accessControl.LoggedInAccountName!</h1>
-			<h2>VOSA-EVENTS </h2>
+		<h2><a asp-page="./Index">VOSA-EVENTS</a></h2>
 	</header>
 	
-	@* <nav>
-		<ul class="list-container">
-			<li><a asp-page="./Index">Products</a></li>
-			<li><a asp-page="./Cart">Cart</a></li>
-		</ul>
-	</nav> *@
-
+@* 	Skapa navigationsmeny?
+ *@
 	<form method="get">
-		<div class="search-container">
 
-			<label for="searchInput">Search for a product:</label>
+			<label for="searchInput">Search for an event:</label>
 			<input id="searchInput" type="text" name="searchItem" placeholder="Search for an event..">
 			<input type="hidden" name="pageNumber" value="1" />
 
 			<label for="categorySelect">Pick a category:</label>
-			<select id="categorySelect" name="category">
+			<select name="category">
 				<option>Any category</option>
 			</select>
-			<label for="citySelect">Pick a city:</label>
-			<select id="citySelect" name="city">
-				<option>Any city</option>
-				<option>Göteborg</option>
-				<option>Skövde</option>
-				<option>Borås</option>
-				<option>Vänersborg</option>
-				<option>Trollhättan</option>
-				<option>Uddevalla</option>
-				<option>Strömstad</option>
-				<option>Kungälv</option>
-				<option>Skara</option>
-			</select>
+			
 			<label for="dateSelect">Date:</label>
 			<select id="dateSelect" name="date">
 				<option>Closest in time</option>
@@ -57,20 +39,21 @@
 			</select>
 
 			<button id="submit" type="submit">Search</button>
-		</div>
+		
 	</form>
 
-	<main class="product-grid">
+	<main class="event-grid">
 		@if (Model.Events.Any())
 		{
 				@foreach (var product in Model.Events)
 				{
-					<article class="product-container">
-						<div class="image-details">
-							<h2>@product.Name</h2>
-							<p>@product.Price$</p>
-@* 							<a asp-page="./Details" asp-route-id="@product.Id">Show details</a>
- *@						</div>
+					<article>
+						
+@* 							Lägga till bild i sampleData?
+ *@							<h2>@events.Name</h2>
+							<p>@events.Price$</p>
+ 							<a asp-page="./EventDetails" asp-route-id="@events.Id">Show details</a>
+ 						
 					</article>
 				}
 		}
@@ -80,7 +63,7 @@
 		}
 	</main>
 
-	<footer class=" button-section">
+	<footer>
 
 		@if (Model.PageNumber > 1)
 		{
