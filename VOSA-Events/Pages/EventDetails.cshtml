@@ -29,7 +29,19 @@
 					<input type="hidden" name="id" value="@Model.Event.ID">
 					<button type="submit">Add to cart</button>
 				</form>
-				<button class="return-button">
+
+			@* Vet inte hur vi ska implementera att man ser reviews ännu.
+				<a asp-page="./EventDetails" class="event-link">
+				<input type="button" name="review-id" class="event-id" />
+				<button type="submit" class="review-button">See reviews</button>
+			</a> *@
+
+			<a asp-page="./Review" asp-route-eventId="@Model.Event.ID">
+				<input type="hidden" name="eventId" value="@Model.Event.ID" />
+				<button type="submit">Leave a review</button>
+			</a>
+
+			<button class="return-button">
 					<a asp-page="./Index">Return to events</a>
 				</button>
 		</section>
