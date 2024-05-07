@@ -30,6 +30,10 @@
 			<label for="categorySelect">Pick a category:</label>
 			<select name="category">
 				<option>Any category</option>
+				<option>Mat & Dryck</option>
+				<option>Mat</option>
+				<option>Dryck</option>
+
 			</select>
 			
 			<label for="dateSelect">Date:</label>
@@ -51,7 +55,7 @@
 						
 @* 							Lägga till bild i sampleData?
  *@							<h2>@events.Name</h2>
-							<p>@events.Price$</p>
+							<p>@events.Price Kr</p>
  							<a asp-page="./EventDetails" asp-route-id="@events.ID">Show details</a>
  						
 					</article>
