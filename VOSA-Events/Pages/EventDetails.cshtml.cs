@@ -11,7 +11,6 @@ namespace VOSA_Events.Pages
 		private readonly AppDbContext database;
 		private readonly AccessControl accessControl;
 
-
 		public EventDetailsModel(AppDbContext database, AccessControl accessControl)
 		{
 			this.database = database;
@@ -20,7 +19,6 @@ namespace VOSA_Events.Pages
 
 		//Variabler
 		public Event Event { get; set; }
-		public List<Event> Events { get; set; }
 
 		//Metoder
 		public void OnGet(int id)

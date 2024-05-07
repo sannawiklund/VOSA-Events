@@ -8,7 +8,6 @@ namespace VOSA_Events.Pages
 {
     public class ReviewModel : PageModel
     {
-
         //Databas
         private readonly AppDbContext database;
 
@@ -28,7 +27,6 @@ namespace VOSA_Events.Pages
 		public void OnGet(int eventId)
 		{
 			Event = database.Events.Find(eventId);
-
         }
         public ActionResult OnPost(int eventId, string reviewText, int rating)
         {
