@@ -36,8 +36,8 @@
 				<button type="submit" class="review-button">See reviews</button>
 			</a> *@
 
-			<a method="post" asp-page="./Review" asp-page-handler="AddReview" asp-route-id="@Model.Event.ID>
-				<input type="hidden" name="eventId" value="@Model.Event.ID"/>
+			<a asp-page="./Review" asp-route-eventId="@Model.Event.ID">
+				<input type="hidden" name="eventId" value="@Model.Event.ID" />
 				<button type="submit">Leave a review</button>
 			</a>
 

@@ -9,16 +9,15 @@
 
     <div class="leave-review-section">
 
-        <h2>Leave a Review</h2>
-        <form method="post" asp-page="./Review">
-            @*< input type="hidden" name="eventId" value="@Model.Event.ID" /> *@
-
+        <h2>Lämna din recension här:</h2>
+        <form method="post">
             <div>
-                <label for="reviewText">Your Review:</label>
+                <label for="reviewText">Vad tyckte du om evenemanget?:</label>
                 <textarea id="reviewText" name="reviewText" rows="4" cols="50"></textarea>
             </div>
 
             <div>
+                <p>Hur många stjärnor får detta evenemang?:</p>
                 <label for="rating1">
                     <input type="radio" id="rating1" name="rating" value="1">
                 </label>
