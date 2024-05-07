@@ -6,9 +6,9 @@ using VOSA_Events.Models;
 
 namespace VOSA_Events.Pages
 {
-    public class IndexModel : PageModel
-    {
-        private readonly AppDbContext database;
+	public class IndexModel : PageModel
+	{
+		private readonly AppDbContext database;
 
 		public List<Event> Events { get; set; }
 		public int PageNumber { get; set; }
@@ -16,12 +16,12 @@ namespace VOSA_Events.Pages
 		public string Category { get; set; }
 
 		public IndexModel(AppDbContext database)
-        {
-            this.database = database;
-        }
+		{
+			this.database = database;
+		}
 
-        public void OnGet(int pageNumber, string searchItem, string category, string date)
-        {
+		public void OnGet(int pageNumber, string searchItem, string category, string date)
+		{
 			PageNumber = pageNumber;
 			var pageSize = 10;
 
@@ -29,23 +29,35 @@ namespace VOSA_Events.Pages
 
 			if (!string.IsNullOrEmpty(searchItem))
 			{
-				Events = Events.Where(p => p.Name.ToLower().Contains(searchItem)).ToList();
+				Events = Events.Where(e => e.Name.ToLower().Contains(searchItem)).ToList();
 			}
 
-			//if (!string.IsNullOrEmpty(category) && category != "Any category")
-			//{
-			//	Category = category.ToLower();
-			//}
+			if (!string.IsNullOrEmpty(category) && category != "Any category")
+			{
+				Category = category.ToLower();
 
-			if (date == "Closest in time")
+				// Hämta CategoryID för den valda kategorin
+				var selectedCategoryID = database.Categories
+												  .FirstOrDefault(c => c.Name.ToLower() == Category)?.ID;
+
+				if (selectedCategoryID != null)
+				{
+					// Filtrera evenemangen baserat på CategoryID
+					Events = Events.Where(e => e.CategoryID == selectedCategoryID).ToList();
+				}
+
+			}
+
+			if (!string.IsNullOrEmpty(date) && date == "Closest in time")
+			{
+				Events = Events.OrderBy(e => e.Date).ToList();
+
+			}
+
+			if (!string.IsNullOrEmpty(date) && date == "Farthest in time")
 			{
 				Events = Events.OrderByDescending(e => e.Date).ToList();
 
-			}
-
-			if (date == "Farthest in time")
-			{
-				Events = Events.OrderBy(e => e.Date).ToList();
 
 			}
 
