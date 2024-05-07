@@ -17,36 +17,35 @@ namespace VOSA_Events.Pages
         }
 
         //Variabler
-        public List<Event> Events { get; set; }
+        public Event Event { get; set; }
         public Account Account { get; set; }
 
 
-        public int EventId { get; set; }
         public string ReveiwText { get; set; }
         public int Rating { get; set; }
 
 
+		//Metoder
 
-        //Metoder
-        public void OnGet()
-        {
-            Events = database.Events.ToList();
+		public void OnGet(int eventId)
+		{
+			Event = database.Events.Find(eventId);
 
+		}
 
-
-        }
-
-        public void OnPost()
+		public ActionResult OnPostAddReview(int eventId, string reviewText, int rating)
         {
             var review = new Review()
             {
-                EventID = EventId,
-                Description = ReveiwText,
-                Rating = Rating
+                EventID = eventId,
+                Description = reviewText,
+                Rating = rating
             };
 
             database.Reviews.Add(review);
             database.SaveChanges();
-        }
+
+			return RedirectToPage("/EventDetails", new { eventId });
+		}
     }
 }

@@ -7,7 +7,7 @@ namespace VOSA_Events.Pages
 {
 	public class EventDetailsModel : PageModel
 	{
-
+		//Databas
 		private readonly AppDbContext database;
 		private readonly AccessControl accessControl;
 
@@ -18,8 +18,11 @@ namespace VOSA_Events.Pages
 			this.accessControl = accessControl;
 		}
 
+		//Variabler
 		public Event Event { get; set; }
+		public List<Event> Events { get; set; }
 
+		//Metoder
 		public void OnGet(int id)
 		{
 			Event = database.Events.Find(id);
