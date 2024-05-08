@@ -36,17 +36,31 @@ namespace VOSA_Events.Pages
                 .Where(a => a.OpenIDSubject == openIdSubject)
                 .Select(a => a.ID)
                 .FirstOrDefault();
-            
-            
-            var review = new Review()
-            {
-                AccountID = accountId,
-                EventID = eventId,
-                Description = reviewText,
-                Rating = rating
-            };
 
-            database.Reviews.Add(review);
+            //Undersöker ifall användaren redan har en review på eventet.
+            var existingReview = database.Reviews
+                .FirstOrDefault(r => r.EventID == eventId && r.AccountID == accountId);
+            
+            if (existingReview != null)
+            {
+                //Om det redan finns en review uppdateras den till den nya som personen skrivit
+                existingReview.Description = reviewText;
+                existingReview.Rating = rating;
+            }
+            else
+            {
+                // Annars skapas en ny review baserat på användarens input
+                var review = new Review()
+                {
+                    AccountID = accountId,
+                    EventID = eventId,
+                    Description = reviewText,
+                    Rating = rating
+                };
+
+                database.Reviews.Add(review);
+            }
+
             database.SaveChanges();
 
             return RedirectToPage("./Index");
