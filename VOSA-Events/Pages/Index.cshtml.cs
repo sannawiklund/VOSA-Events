@@ -20,58 +20,55 @@ namespace VOSA_Events.Pages
 			this.database = database;
 		}
 
-		public void OnGet(int pageNumber, string searchItem, string category, string date)
-		{
-			PageNumber = pageNumber;
-			var pageSize = 10;
+        public void OnGet(int pageNumber, string searchItem, string category, string date)
+        {
+            PageNumber = pageNumber;
+            var pageSize = 4; // Uppdaterat till 4 events per sida
 
-			Events = database.Events.ToList();
+            Events = database.Events.ToList();
 
-			if (!string.IsNullOrEmpty(searchItem))
-			{
-				Events = Events.Where(e => e.Name.ToLower().Contains(searchItem)).ToList();
-			}
+            if (!string.IsNullOrEmpty(searchItem))
+            {
+                Events = Events.Where(e => e.Name.ToLower().Contains(searchItem)).ToList();
+            }
 
-			if (!string.IsNullOrEmpty(category) && category != "Any category")
-			{
-				Category = category.ToLower();
+            if (!string.IsNullOrEmpty(category) && category != "Any category")
+            {
+                Category = category.ToLower();
 
-				// Hämta CategoryID för den valda kategorin
-				var selectedCategoryID = database.Categories
-												  .FirstOrDefault(c => c.Name.ToLower() == Category)?.ID;
+                // Hämta CategoryID för den valda kategorin
+                var selectedCategoryID = database.Categories
+                                                    .FirstOrDefault(c => c.Name.ToLower() == Category)?.ID;
 
-				if (selectedCategoryID != null)
-				{
-					// Filtrera evenemangen baserat på CategoryID
-					Events = Events.Where(e => e.CategoryID == selectedCategoryID).ToList();
-				}
+                if (selectedCategoryID != null)
+                {
+                    // Filtrera evenemangen baserat på CategoryID
+                    Events = Events.Where(e => e.CategoryID == selectedCategoryID).ToList();
+                }
 
-			}
+            }
 
-			if (!string.IsNullOrEmpty(date) && date == "Closest in time")
-			{
-				Events = Events.OrderBy(e => e.Date).ToList();
+            if (!string.IsNullOrEmpty(date) && date == "Closest in time")
+            {
+                Events = Events.OrderBy(e => e.Date).ToList();
+            }
 
-			}
+            if (!string.IsNullOrEmpty(date) && date == "Farthest in time")
+            {
+                Events = Events.OrderByDescending(e => e.Date).ToList();
+            }
 
-			if (!string.IsNullOrEmpty(date) && date == "Farthest in time")
-			{
-				Events = Events.OrderByDescending(e => e.Date).ToList();
+            int totalEvents = Events.Count;
+            TotalPages = (int)Math.Ceiling((double)totalEvents / pageSize);
 
+            if (PageNumber < 1)
+            {
+                PageNumber = 1;
+            }
 
-			}
+            Events = Events.Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize).ToList();
+        }
 
-			int totalEvents = Events.Count;
-			TotalPages = (int)Math.Ceiling((double)totalEvents / pageSize);
-
-			if (PageNumber < 1)
-			{
-				PageNumber = 1;
-			}
-
-			Events = Events.Skip((pageNumber - 1) * pageSize)
-				.Take(pageSize).ToList();
-
-		}
-	}
+    }
 }
