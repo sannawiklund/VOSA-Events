@@ -245,6 +245,18 @@ namespace VOSA_Events.Data
 					AdminAccountID = 1,
 					CategoryID = 3
 				});
+
+				database.Events.Add(new Event
+				{
+					Name = "Borås Vin & Drinkmässa",
+					Description = "En mässa för vin- och drinkentusiaster med provningar av exklusiva viner och innovativa drinkar. Adress: Mässans gata 20, 412 51 Göteborg",
+					Price = 200,
+					City = "Borås",
+					TicketQuantity = 400,
+					Date = new DateTime(2024, 10, 5, 17, 0, 0),
+					AdminAccountID = 4,
+					CategoryID = 3
+				});
 			}
 
 			database.SaveChanges();
