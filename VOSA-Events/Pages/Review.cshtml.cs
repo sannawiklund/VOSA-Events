@@ -21,29 +21,47 @@ namespace VOSA_Events.Pages
         public int EventID { get; set; }
         public string ReveiwText { get; set; }
         public int Rating { get; set; }
+        public bool ShowUpdateMessage { get; set; }
 
-		//Metoder
+        //Metoder
 
-		public void OnGet(int eventId)
-		{
-			Event = database.Events.Find(eventId);
-        }
-        public ActionResult OnPost(int eventId, string reviewText, int rating)
+        private int GetUserId()
         {
-
             var openIdSubject = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var accountId = database.Accounts
+            return database.Accounts
                 .Where(a => a.OpenIDSubject == openIdSubject)
                 .Select(a => a.ID)
                 .FirstOrDefault();
+        }
 
-            //Undersöker ifall användaren redan har en review på eventet.
-            var existingReview = database.Reviews
+        private Review GetReview(int eventId, int accountId)
+        {
+            return database.Reviews
                 .FirstOrDefault(r => r.EventID == eventId && r.AccountID == accountId);
-            
+        }
+        private bool CheckForExistingReview(int eventId, int accountId)
+        {
+            return GetReview(eventId, accountId) != null;
+        }
+        public void OnGet(int eventId)
+		{
+			Event = database.Events.Find(eventId);
+
+            var accountId = GetUserId();
+
+            //Undersöker ifall användaren redan har en review på eventet och visar isf ett meddelande
+            ShowUpdateMessage = CheckForExistingReview(eventId, accountId);
+
+        }
+        public ActionResult OnPost(int eventId, string reviewText, int rating)
+        {
+            var accountId = GetUserId();
+
+            var existingReview = GetReview(eventId, accountId);
+
+            //Om det redan finns en review uppdateras den till den nya som personen skrivit
             if (existingReview != null)
             {
-                //Om det redan finns en review uppdateras den till den nya som personen skrivit
                 existingReview.Description = reviewText;
                 existingReview.Rating = rating;
             }
