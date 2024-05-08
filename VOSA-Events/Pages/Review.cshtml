@@ -1,8 +1,14 @@
-@page
+@page "{eventId}"
 @model VOSA_Events.Pages.ReviewModel
 @inject VOSA_Events.Data.AccessControl accessControl
 @{
     ViewData["Title"] = "Review Page";
+}
+@if (Model.ShowUpdateMessage)
+{
+    <div class="alert alert-info" role="alert">
+        Din befintliga recension kommer att uppdateras.
+    </div>
 }
 
 <div id="review-page">
@@ -35,7 +41,7 @@
                 </label>
             </div>
 
-            <button type="submit" class="review-button">Submit Review</button>
+            <button type="submit" class="review-button">Publicera recension</button>
         </form>
     </div>
 
