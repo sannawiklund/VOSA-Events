@@ -10,6 +10,8 @@
         public DateTime Date { get; set; }
         public int TicketQuantity { get; set; }
 
+        public string ImagePath { get; set; }
+
         public int CategoryID { get; set; }
         public virtual Category Category { get; set; }
 
