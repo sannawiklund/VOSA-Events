@@ -16,7 +16,9 @@
 		<section>
 				<h3>@Model.Event.Name</h3>
 				<p>@Model.Event.Description</p>
-				<p>Price: @Model.Event.Price$</p>
+				<p>Price: @Model.Event.Price SEK</p>
+				<p>@Model.Event.Date.ToString("yyyy-MM-dd HH:mm")</p>
+				<p>@Model.Event.City</p>
 
 				<form method="post">
 				<select name="quantity">
@@ -26,8 +28,17 @@
 					<option>4</option>
 					<option>5</option>
 				</select>
+
+				</form>
+
+				<form asp-page-handler="Order" method="post">
 					<input type="hidden" name="id" value="@Model.Event.ID">
-					<button type="submit">Add to cart</button>
+					<button type="submit">Boka</button>
+				</form>
+
+				<form asp-page-handler="Follow" method="post">
+					<input type="hidden" name="id" value="@Model.Event.ID">
+				<button type="submit" @(Model.IsEventFollowed(Model.Event.ID) ? "disabled" : "")>Bevaka</button>
 				</form>
 
 			@* Vet inte hur vi ska implementera att man ser reviews ännu.
