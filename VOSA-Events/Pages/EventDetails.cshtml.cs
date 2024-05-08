@@ -59,7 +59,6 @@ namespace VOSA_Events.Pages
 		{
 			var loggedInUserId = accessControl.LoggedInAccountID;
 
-				// Om användaren inte redan följer evenemanget, lägg till följningen
 				var follows = new Follow
 				{
 					EventID = id,
@@ -76,7 +75,6 @@ namespace VOSA_Events.Pages
 		{
 			var loggedInUserId = accessControl.LoggedInAccountID;
 
-			// Kontrollera om användaren redan följer detta evenemang
 			var existingFollow = database.Follows.Any(f => f.AccountID == loggedInUserId && f.EventID == eventId);
 
 			return existingFollow;
