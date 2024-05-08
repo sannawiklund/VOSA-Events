@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using VOSA_Events.Data;
 using VOSA_Events.Models;
 using System.Security.Claims;
+using System.Text.RegularExpressions;
 
 namespace VOSA_Events.Pages
 {
@@ -43,6 +44,12 @@ namespace VOSA_Events.Pages
         {
             return GetReview(eventId, accountId) != null;
         }
+
+        //Plockar bort html-formatteringen
+        private string CleanUpHtml(string input)
+        {
+            return Regex.Replace(input, "<.*?>", String.Empty);
+        }
         public void OnGet(int eventId)
 		{
 			Event = database.Events.Find(eventId);
@@ -56,6 +63,8 @@ namespace VOSA_Events.Pages
         public ActionResult OnPost(int eventId, string reviewText, int rating)
         {
             var accountId = GetUserId();
+
+            reviewText = CleanUpHtml(reviewText);
 
             var existingReview = GetReview(eventId, accountId);
 
