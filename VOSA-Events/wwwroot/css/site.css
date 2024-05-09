@@ -114,7 +114,47 @@ input#searchInput, select#categorySelect, select#dateSelect {
 /*------------------------------------------------*/
 
 /*CartPage*/
+#shopping-cart-page {
+    background-color: #f0f0f0;
+    padding: 2em;
+    display: grid;
+    margin: 0 auto;
+    max-width: 600px;
+}
 
+.cart-title {
+}
+
+
+.shopping-cart {
+}
+
+.cart-item {
+}
+
+ .cart-item-image {
+} 
+
+.cart-total {
+}
+
+.cart-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+form.place-order-form,
+form.clear-cart-form,
+form.return-to-start-form {
+    padding: 5px;
+}
+
+.place-order-button {
+    background-color: steelblue;
+}
+.clear-cart-button{
+     background-color: darkgrey;
+}
 
 
 /*------------------------------------------------*/
