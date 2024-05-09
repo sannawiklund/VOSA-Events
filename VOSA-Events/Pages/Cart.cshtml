@@ -1,4 +1,58 @@
 ﻿@page
 @model VOSA_Events.Pages.CartModel
 @{
+    ViewData["Title"] = "Shopping Cart";
 }
+
+<div id="shopping-cart-page">
+    <h1 class="cart-title">Your Items</h1>
+
+    <table class="cart-table">
+        <tbody>
+            <div class="shopping-cart">
+                @if (Model.Bookings.Any())
+                {
+                    @foreach (var cartItemGroup in Model.Bookings.GroupBy(c => c.EventID))
+                    {
+                    <tr class="cart-item">
+                            @*                         <td><img src="Images/@cartItemGroup.First().Events.ImagePath" alt="@cartItemGroup.First().Event.Name" class="cart-item-image" /></td>
+                *@
+                        <td>@cartItemGroup.First().Event.Name</td>
+                        <td>Price: @cartItemGroup.First().Event.Price SEK</td>
+                            @if (cartItemGroup.Count() > 1)
+                            {
+                            <td>Quantity: @cartItemGroup.Sum(c => c.Quantity)</td>
+                            }
+                            else
+                            {
+                            <td>Quantity: @cartItemGroup.First().Quantity</td>
+                            }
+                    </tr>
+                    }
+                }
+                else
+                {
+                <p id="empty-cart-message">@Model.emptyCart</p>
+                }
+
+        </tbody>
+    </table>
+
+    <div class="cart-total">
+        <p> <b>Your Total: </b>@Model.TotalPrice SEK</p>
+        <div class="cart-buttons">
+            <form class="place-order-form" asp-page="/Cart" method="post">
+                <button type="submit" class="place-order-button">Place Order</button>
+            </form>
+
+            <form class="clear-cart-form" method="post">
+                <button type="submit" class="clear-cart-button" asp-page-handler="ClearCart">Clear Cart</button>
+            </form>
+
+            <form class="return-to-start-form" asp-page="/Index" method="get">
+                <button type="submit" class="return-to-start-button">Return to start</button>
+            </form>
+        </div>
+
+    </div>
+</div>
