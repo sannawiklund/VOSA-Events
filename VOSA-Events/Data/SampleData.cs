@@ -121,7 +121,8 @@ namespace VOSA_Events.Data
 					TicketQuantity = 500,
 					Date = new DateTime(2024, 8, 10, 10, 0, 0),
 					AdminAccountID = 2,
-					CategoryID = 1
+					CategoryID = 1,
+					ImagePath = "gbg-festival.jpg"
 				});
 
 				database.Events.Add(new Event
@@ -133,7 +134,8 @@ namespace VOSA_Events.Data
 					TicketQuantity = 300,
 					Date = new DateTime(2024, 11, 29, 12, 0, 0),
 					AdminAccountID = 2,
-					CategoryID = 1
+					CategoryID = 1,
+					ImagePath = "christmas-festival.jpg"
 
 				});
 
@@ -146,7 +148,8 @@ namespace VOSA_Events.Data
 					TicketQuantity = 200,
 					Date = new DateTime(2024, 6, 15, 11, 0, 0),
 					AdminAccountID = 3,
-					CategoryID = 2
+					CategoryID = 2,
+					ImagePath = "food-tasting.jpg"
 				});
 
 				database.Events.Add(new Event
@@ -158,7 +161,8 @@ namespace VOSA_Events.Data
 					TicketQuantity = 150,
 					Date = new DateTime(2024, 9, 20, 9, 30, 0),
 					AdminAccountID = 4,
-					CategoryID = 1
+					CategoryID = 1,
+					ImagePath = "food-festivalboras.jpg"
 				});
 
 				database.Events.Add(new Event
@@ -170,7 +174,8 @@ namespace VOSA_Events.Data
 					TicketQuantity = 400,
 					Date = new DateTime(2024, 7, 5, 10, 30, 0),
 					AdminAccountID = 5,
-					CategoryID = 1
+					CategoryID = 1,
+					ImagePath = "food-festivalvbg.jpg"
 				});
 
 				database.Events.Add(new Event
@@ -182,7 +187,8 @@ namespace VOSA_Events.Data
 					TicketQuantity = 250,
 					Date = new DateTime(2024, 10, 12, 13, 0, 0),
 					AdminAccountID = 1,
-					CategoryID = 1
+					CategoryID = 1,
+					ImagePath = "wine-deli.jpg"
 				});
 
 				database.Events.Add(new Event
@@ -194,7 +200,8 @@ namespace VOSA_Events.Data
 					TicketQuantity = 350,
 					Date = new DateTime(2024, 8, 25, 14, 0, 0),
 					AdminAccountID = 2,
-					CategoryID = 1
+					CategoryID = 1,
+					ImagePath = "food-festivalthn.jpg"
 
 				});
 
@@ -207,7 +214,8 @@ namespace VOSA_Events.Data
 					TicketQuantity = 180,
 					Date = new DateTime(2024, 9, 30, 11, 30, 0),
 					AdminAccountID = 3,
-					CategoryID = 2
+					CategoryID = 2,
+					ImagePath = "fall-market.jpg"
 				});
 
 				database.Events.Add(new Event
@@ -219,7 +227,8 @@ namespace VOSA_Events.Data
 					TicketQuantity = 200,
 					Date = new DateTime(2024, 11, 10, 10, 0, 0),
 					AdminAccountID = 4,
-					CategoryID = 1
+					CategoryID = 1,
+					ImagePath = "chocolate-festival.jpg"
 				});
 
 				database.Events.Add(new Event
@@ -231,7 +240,8 @@ namespace VOSA_Events.Data
 					TicketQuantity = 300,
 					Date = new DateTime(2024, 7, 20, 12, 30, 0),
 					AdminAccountID = 5,
-					CategoryID = 2
+					CategoryID = 2,
+					ImagePath = "skara-buffe.jpg"
 				});
 
 				database.Events.Add(new Event
@@ -243,7 +253,8 @@ namespace VOSA_Events.Data
 					TicketQuantity = 400,
 					Date = new DateTime(2024, 8, 31, 15, 0, 0),
 					AdminAccountID = 1,
-					CategoryID = 3
+					CategoryID = 3,
+					ImagePath = "beer-festival.jpg"
 				});
 
 				database.Events.Add(new Event
@@ -255,7 +266,8 @@ namespace VOSA_Events.Data
 					TicketQuantity = 400,
 					Date = new DateTime(2024, 10, 5, 17, 0, 0),
 					AdminAccountID = 4,
-					CategoryID = 3
+					CategoryID = 3,
+					ImagePath = "wine-drinks.jpg"
 				});
 			}
 
