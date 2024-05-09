@@ -1,4 +1,33 @@
 ﻿@page
+@inject VOSA_Events.Data.AccessControl accessControl
+
 @model VOSA_Events.Pages.OrderConfirmationModel
 @{
 }
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+</head>
+<body>
+
+    <header class="header">
+        <h1><a asp-page="./Index">VOSA-EVENTS</a></h1>
+    </header>
+    <main>
+        <section class="order-container">
+            <h2>Tack!</h2>
+            <h3>Dina biljetter är bokade.</h3>
+            <p>Total summa: @Model.TotalPrice SEK</p>
+
+            <button class="return-button">
+                <a asp-page="./Index">Gå tillbaka till startidan</a>
+            </button>
+        </section>
+    </main>
+
+</body>
+</html>

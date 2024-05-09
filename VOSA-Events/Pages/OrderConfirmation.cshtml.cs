@@ -5,8 +5,13 @@ namespace VOSA_Events.Pages
 {
     public class OrderConfirmationModel : PageModel
     {
-        public void OnGet()
+
+		public double TotalPrice { get; set; }
+
+		public void OnGet(double totalPrice)
         {
-        }
-    }
+			TotalPrice = totalPrice;
+
+		}
+	}
 }
