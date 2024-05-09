@@ -1,0 +1,167 @@
+/* Layout för alla sidor */
+body {
+    background-color: #ffffff;
+    color: #333333;
+    overflow: hidden;
+}
+
+h1, h2, h3, input#searchInput, select#categorySelect, select#dateSelect, select#account-id, label {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+}
+
+    select#account-id, label {
+        font-size: 15px;
+    }
+
+    p, .details-link {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+.top-container {
+    display: grid;
+    justify-content: center;
+}
+
+/* Header */
+.header {
+    font-weight: bold; 
+}
+
+/* Sökruta */
+.search-form {
+    margin-bottom: 20px; 
+}
+
+input#searchInput, select#categorySelect, select#dateSelect {
+    padding: 10px 15px;
+    border-radius: 15px;
+    border-width: 1px;
+}
+/* Grid för evenemang */
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+    justify-content: center;
+    padding: 1em;
+}
+
+/* Evenemangsruta */
+.event {
+    padding: 20px; 
+    background-color: #f0f0f0; 
+}
+
+/* Länkar för att läsa mer */
+.details-link {
+    color: cadetblue; 
+    text-decoration: none; 
+}
+
+/* Footer */
+.footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    margin: 1em;
+}
+
+/* Knappar */
+#submit,
+.previous-button,
+.next-button, button {
+    background-color: cadetblue;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 15px;
+    text-decoration: none;
+}
+
+#paginationBtns {
+    margin: 1em;
+}
+
+/*------------------------------------------------*/
+
+/*EventDetailsPage*/
+
+
+
+
+/*------------------------------------------------*/
+
+
+/*ReviewPage*/
+
+
+
+
+/*------------------------------------------------*/
+
+/*MyEventsPage*/
+
+
+
+
+/*------------------------------------------------*/
+
+/*CartPage*/
+#shopping-cart-page {
+    background-color: #f0f0f0;
+    padding: 2em;
+    display: grid;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.cart-title {
+}
+
+
+.shopping-cart {
+}
+
+.cart-item {
+}
+
+ .cart-item-image {
+} 
+
+.cart-total {
+}
+
+.cart-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+form.place-order-form,
+form.clear-cart-form,
+form.return-to-start-form {
+    padding: 5px;
+}
+
+.place-order-button {
+    background-color: steelblue;
+}
+.clear-cart-button{
+     background-color: darkgrey;
+}
+
+
+/*------------------------------------------------*/
+
+/*OrderConfirmationPage*/
+
+
+
+
+/*------------------------------------------------*/
