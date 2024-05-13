@@ -56,14 +56,19 @@
 					<a asp-page="./Index">Return to events</a>
 				</button>
 		</section>
-		@* 	@if (Model.ShowReviews)
+			@if (Model.ShowReviews)
 			{
 				//varje review i review där eventID matchar model.event.ID
 				<div class="show-review">
 					<h3>Recensioner</h3>
-					@foreach(var review in Model.Reviews.)
+				@foreach(var review in Model.Event.Reviews)
+				{
+					<p>@review.Description</p>
+					<p>Betyg: @review.Rating</p>
+					
+				}
 				</div>
-			} *@
+			}
 	</main>
 </body>
 </html>
