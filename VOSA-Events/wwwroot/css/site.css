@@ -74,9 +74,12 @@ select#account-id, label {
     padding-left: 2em;
     font-size: 4.5rem;
     color: gold;
-    font-family: auto;
-    text-shadow: 1px 1px 2px #7a7a7a;
-}
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+/*    text-shadow: 1px 1px 2px #7a7a7a;
+*/}
 
 #loginForm {
     font-weight: 400;
