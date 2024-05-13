@@ -44,7 +44,7 @@ namespace VOSA_Events.Pages
         {
             return GetReview(eventId, accountId) != null;
         }
-
+        
         //Plockar bort html-formatteringen
         private string CleanUpHtml(string input)
         {
@@ -57,13 +57,14 @@ namespace VOSA_Events.Pages
                 return input;
             }
         }
+
         public void OnGet(int eventId)
-		{
-			Event = database.Events.Find(eventId);
+		    {
+			   Event = database.Events.Find(eventId);
 
             var accountId = GetUserId();
 
-            //Undersˆker ifall anv‰ndaren redan har en review pÂ eventet och visar isf ett meddelande
+            //Unders√∂ker ifall anv√§ndaren redan har en review p√• eventet och visar isf ett meddelande
             ShowUpdateMessage = CheckForExistingReview(eventId, accountId);
 
         }
@@ -75,25 +76,24 @@ namespace VOSA_Events.Pages
 
             var existingReview = GetReview(eventId, accountId);
 
-            //Om det redan finns en review uppdateras den till den nya som personen skrivit
             if (existingReview != null)
-            {
-                existingReview.Description = reviewText;
-                existingReview.Rating = rating;
-            }
-            else
-            {
-                // Annars skapas en ny review baserat pÂ anv‰ndarens input
-                var review = new Review()
-                {
-                    AccountID = accountId,
-                    EventID = eventId,
-                    Description = reviewText,
-                    Rating = rating
-                };
+{
+    existingReview.Description = reviewText;
+    existingReview.Rating = rating;
+}
+else
+{
+    // Annars skapas en ny review baserat p√• anv√§ndarens input
+    var review = new Review()
+    {
+        AccountID = accountId,
+        EventID = eventId,
+        Description = reviewText,
+        Rating = rating
+    };
 
-                database.Reviews.Add(review);
-            }
+    database.Reviews.Add(review);
+}
 
             database.SaveChanges();
 
