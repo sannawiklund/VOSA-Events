@@ -50,10 +50,12 @@
                 @foreach (var events in Model.Events)
                 {
                     <article class="event">
+                    <a asp-page ="./EventDetails" asp-route-id="@events.ID" class="details-link">
                         <h2>@events.Name</h2>
                         <p>@events.Price SEK</p>
                         <p>@events.Category</p>
                         <a asp-page="./EventDetails" asp-route-id="@events.ID" class="details-link">Vill du läsa mer? Klicka här!</a>
+                    </a>    
                     </article>
                 }
             }
