@@ -63,7 +63,7 @@ builder.Services.AddAuthentication(options =>
 	};
 
 
-	options.Events.OnValidatePrincipal += async context =>
+	/*options.Events.OnValidatePrincipal += async context =>
 	{
 		var serviceProvider = context.HttpContext.RequestServices;
 		using var db = new AppDbContext(serviceProvider.GetRequiredService<DbContextOptions<AppDbContext>>());
@@ -150,7 +150,7 @@ builder.Services.AddAuthentication(options =>
 		}
 
 		await db.SaveChangesAsync();
-	};
+	};*/
 
 })
 .AddOpenIdConnect("Google", options =>
