@@ -48,7 +48,14 @@ namespace VOSA_Events.Pages
         //Plockar bort html-formatteringen
         private string CleanUpHtml(string input)
         {
+            if (input != null)
+            {
             return Regex.Replace(input, "<.*?>", String.Empty);
+            }
+            else
+            {
+                return input;
+            }
         }
         public void OnGet(int eventId)
 		{
