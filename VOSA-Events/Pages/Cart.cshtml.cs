@@ -14,7 +14,7 @@ namespace VOSA_Events.Pages
 
         public int CountItems { get; set; }
         public double TotalPrice { get; set; }
-        public string emptyCart { get; set; }
+        public string EmptyCart { get; set; }
 
         //Databas
         private readonly AppDbContext database;
@@ -39,7 +39,7 @@ namespace VOSA_Events.Pages
             }
             else
             {
-                emptyCart = "Your cart is empty!";
+                EmptyCart = "Ojdå, här var det tomt!";
                 return null;
             }
         }
@@ -82,7 +82,7 @@ namespace VOSA_Events.Pages
             }
             else
             {
-                emptyCart = "Your cart is empty!";
+                EmptyCart = "Your cart is empty!";
             }
         }
 

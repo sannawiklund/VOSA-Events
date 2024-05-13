@@ -2,7 +2,7 @@
 body {
     background-color: #ffffff;
     color: #333333;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 h1, h2, h3, input#searchInput, select#categorySelect, select#dateSelect, select#account-id, label {
@@ -20,17 +20,77 @@ h1, h2, h3, input#searchInput, select#categorySelect, select#dateSelect, select#
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
+/*---------------------------------------------------------------------------------------*/
+
+/*Statisk navigationbar*/
+
+.topnav {
+    background-image: url(https://cdn.vectorstock.com/i/500p/59/07/black-and-white-geometric-pattern-vector-3645907.jpg);
+    background-color: white;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1em;
+}
+
+    .topnav a {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        float: left;
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: bolder;
+    }
+
+        #navBkg a {
+            color: gold;
+            background-color: #0000009c;
+            font-weight: 400;
+            padding: 25px;
+        }
+
+    .topnav .icon {
+        display: none;
+    }
+
+select#account-id, label {
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 200;
+    border-radius: 7px;
+}
+
+#vosaEventTitle {
+    margin: 0px;
+    margin-top: 6px;
+    padding-left: 3em;
+    font-size: 3.5rem;
+    color: gold;
+    font-family: auto;
+}
+
+#loginForm {
+    color: gold;
+    background-color: #0000009c;
+    font-weight: 400;
+    padding: 21px;
+}
+
+/*---------------------------------------------------------------------------------------*/
+/*IndexPage/StartPage*/
+.header {
+    font-weight: bold;
+}
+
 .top-container {
     display: grid;
     justify-content: center;
 }
 
-/* Header */
-.header {
-    font-weight: bold; 
-}
-
-/* Sökruta */
 .search-form {
     margin-bottom: 20px; 
 }
@@ -40,7 +100,7 @@ input#searchInput, select#categorySelect, select#dateSelect {
     border-radius: 15px;
     border-width: 1px;
 }
-/* Grid för evenemang */
+
 .event-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -50,19 +110,16 @@ input#searchInput, select#categorySelect, select#dateSelect {
     padding: 1em;
 }
 
-/* Evenemangsruta */
 .event {
     padding: 20px; 
     background-color: #f0f0f0; 
 }
 
-/* Länkar för att läsa mer */
 .details-link {
     color: cadetblue; 
     text-decoration: none; 
 }
 
-/* Footer */
 .footer {
     margin-top: 20px;
     display: flex;
@@ -70,18 +127,17 @@ input#searchInput, select#categorySelect, select#dateSelect {
     margin: 1em;
 }
 
-/* Knappar */
 #submit,
 .previous-button,
 .next-button, button {
-    background-color: cadetblue;
+    background-color: gold;
     color: #ffffff;
     border: none;
-    padding: 10px 15px;
-    font-weight: bold;
+    padding: 6px 15px;
+    font-weight: 400;
     cursor: pointer;
     transition: background-color 0.3s;
-    border-radius: 15px;
+    border-radius: 5px;
     text-decoration: none;
 }
 
@@ -114,7 +170,47 @@ input#searchInput, select#categorySelect, select#dateSelect {
 /*------------------------------------------------*/
 
 /*CartPage*/
+#shopping-cart-page {
+    background-color: #f0f0f0;
+    padding: 2em;
+    display: grid;
+    margin: 0 auto;
+    max-width: 600px;
+}
 
+.cart-title {
+}
+
+
+.shopping-cart {
+}
+
+.cart-item {
+}
+
+ .cart-item-image {
+} 
+
+.cart-total {
+}
+
+.cart-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+form.place-order-form,
+form.clear-cart-form,
+form.return-to-start-form {
+    padding: 5px;
+}
+
+.place-order-button {
+    background-color: steelblue;
+}
+.clear-cart-button{
+     background-color: darkgrey;
+}
 
 
 /*------------------------------------------------*/
