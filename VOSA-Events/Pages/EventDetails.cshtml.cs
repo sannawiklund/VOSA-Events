@@ -20,14 +20,16 @@ namespace VOSA_Events.Pages
 
 		//Variabler
 		public Event Event { get; set; }
+		public List<Review> Reviews { get; set; }
 		public bool ShowReviews { get; set; }
 
-		//Metoder
+		private int tempEventId;
+	
 		public void OnGet(int id)
 		{
+			tempEventId = id;
+
 			Event = database.Events.Find(id);
-			
-			ShowReviews = false;
 		}
 		public IActionResult OnPostOrder(int quantity, int id )
 		{
@@ -74,8 +76,20 @@ namespace VOSA_Events.Pages
 			return RedirectToPage("/Index");
 		}
 
+		public void LoadReviews(int id)
+		{
+			Reviews = database.Reviews.Where(r => r.EventID == id).ToList();
+		}
 		public ActionResult OnPostShowReviews()
 		{
+			var id = tempEventId;
+			Event = database.Events.Find(id);
+			LoadReviews(id);
+
+/*
+			var eventId = Convert.ToInt32(Request.Form["id"]);*/
+
+
 			//Togglar om man visar reviews eller inte
 			ShowReviews = !ShowReviews;
 			return Page();
