@@ -78,13 +78,18 @@ namespace VOSA_Events.Pages
 		{
 			Reviews = database.Reviews.Where(r => r.EventID == id).ToList();
 		}
-		public ActionResult OnGetShowReviews(int id)
+		public ActionResult OnGetShowReviews(int id, bool showReviews)
 		{
 			Event = database.Events.Find(id);
-			LoadReviews(id);
+			
+			//Plockar in från URL-parametern
+			ShowReviews = showReviews;
 
-			//Togglar om man visar reviews eller inte
-			ShowReviews = !ShowReviews;
+			if (ShowReviews)
+			{
+				LoadReviews(id);
+			}
+
 			return Page();
 		}
 

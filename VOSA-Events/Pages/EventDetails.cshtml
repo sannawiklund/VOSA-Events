@@ -46,8 +46,9 @@
 				<button type="submit">Lämna en recension</button>
 			</a>
 			
-			<a asp-page="./EventDetails" asp-page-handler="ShowReviews" asp-route-id="@Model.Event.ID">
-				<button type="button">Visa recensioner</button>
+			<a asp-page="./EventDetails" asp-page-handler="ShowReviews" asp-route-id="@Model.Event.ID"
+										asp-route-showReviews="@(Model.ShowReviews ? "false" : "true")">
+				<button type="button">@(Model.ShowReviews ? "Dölj" : "Visa") recensioner</button>
 			</a>
 
 			@if (Model.ShowReviews && Model.Reviews != null && Model.Reviews.Any())
