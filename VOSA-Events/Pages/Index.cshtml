@@ -49,7 +49,8 @@
             {
                 @foreach (var events in Model.Events)
                 {
-                    <article class="event">
+                <article class="event">
+                    <img src="images/@events.ImagePath" alt="Product Image">
                         <h2>@events.Name</h2>
                         <p>@events.Price SEK</p>
                         <p>@events.Category</p>
