@@ -2,114 +2,37 @@
 body {
     background-color: #ffffff;
     color: #333333;
-    overflow-x: hidden;
-    background-image: url(https://cdn.vectorstock.com/i/500p/59/07/black-and-white-geometric-pattern-vector-3645907.jpg);
-}
-
-h1 {
-    font-family: "Josefin Sans", sans-serif;
-    text-align: center;
-    color: darkgoldenrod;
+    overflow: hidden;
 }
 
 h1, h2, h3, input#searchInput, select#categorySelect, select#dateSelect, select#account-id, label {
-    font-family: "Josefin Sans", sans-serif;
+    font-family: "Raleway", sans-serif;
     font-optical-sizing: auto;
     font-weight: <weight>;
     font-style: normal;
 }
 
-select#account-id, label {
-    font-size: 15px;
-}
-
-p, .details-link {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/*---------------------------------------------------------------------------------------*/
-
-/*Statisk navigationbar*/
-
-.topnav {
-/*    background-color: #10101082;
-*/    border-radius: 20px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 1em;
-}
-
-    .topnav a {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        float: left;
-        display: block;
-        color: black;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
+    select#account-id, label {
         font-size: 15px;
-        font-weight: bolder;
     }
 
-    .topnav .icon {
-        display: none;
+    p, .details-link {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-
-#home {
-    font-size: 50px;
-    color: goldenrod;
-}
-
-select#account-id, label {
-    font-size: 15px;
-    margin-left: 1em;
-    margin-top: 12px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: 200;
-    border-radius: 5px;
-}
-
-#vosaEventTitle {
-    margin: 0px;
-    padding-left: 5em;
-    padding-top: 15px;
-    font-size: 3.5rem;
-    color: goldenrod;
-    font-family: "Josefin Sans", sans-serif;
-}
-
-#loginForm {
-    font-weight: 400;
-}
-
-#navBkg {
-    background-color: #b1ada6c7;
-    padding: 5px;
-    border-radius: 20px;
-    display: flex;
-}
-
-    #navBkg a, #loginForm {
-        color: white;
-        font-weight: 400;
-        margin: 5px;
-    }
-
-/*---------------------------------------------------------------------------------------*/
-/*IndexPage/StartPage*/
-.header {
-    font-weight: bold;
-}
 
 .top-container {
     display: grid;
     justify-content: center;
 }
 
+/* Header */
+.header {
+    font-weight: bold; 
+}
+
+/* Sökruta */
 .search-form {
-    margin-bottom: 20px;
+    margin-bottom: 20px; 
 }
 
 input#searchInput, select#categorySelect, select#dateSelect {
@@ -117,7 +40,7 @@ input#searchInput, select#categorySelect, select#dateSelect {
     border-radius: 15px;
     border-width: 1px;
 }
-
+/* Grid för evenemang */
 .event-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -127,16 +50,19 @@ input#searchInput, select#categorySelect, select#dateSelect {
     padding: 1em;
 }
 
+/* Evenemangsruta */
 .event {
-    padding: 20px;
-    background-color: #f0f0f0;
+    padding: 20px; 
+    background-color: #f0f0f0; 
 }
 
+/* Länkar för att läsa mer */
 .details-link {
-    color: cadetblue;
-    text-decoration: none;
+    color: cadetblue; 
+    text-decoration: none; 
 }
 
+/* Footer */
 .footer {
     margin-top: 20px;
     display: flex;
@@ -144,16 +70,18 @@ input#searchInput, select#categorySelect, select#dateSelect {
     margin: 1em;
 }
 
+/* Knappar */
 #submit,
 .previous-button,
 .next-button, button {
-    background-color: goldenrod;
+    background-color: cadetblue;
     color: #ffffff;
     border: none;
-    padding: 6px 15px;
-    font-weight: 400;
+    padding: 10px 15px;
+    font-weight: bold;
     cursor: pointer;
-    border-radius: 5px;
+    transition: background-color 0.3s;
+    border-radius: 15px;
     text-decoration: none;
 }
 
@@ -204,8 +132,8 @@ input#searchInput, select#categorySelect, select#dateSelect {
 .cart-item {
 }
 
-.cart-item-image {
-}
+ .cart-item-image {
+} 
 
 .cart-total {
 }
@@ -224,9 +152,8 @@ form.return-to-start-form {
 .place-order-button {
     background-color: steelblue;
 }
-
-.clear-cart-button {
-    background-color: darkgrey;
+.clear-cart-button{
+     background-color: darkgrey;
 }
 
 

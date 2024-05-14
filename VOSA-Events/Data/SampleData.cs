@@ -86,7 +86,7 @@ namespace VOSA_Events.Data
 			}
 			database.SaveChanges();
 
-		/*	if (!database.Categories.Any())
+			if (!database.Categories.Any())
 
 			{
 				database.Categories.Add(new Category
@@ -272,7 +272,7 @@ namespace VOSA_Events.Data
 			}
 
 			database.SaveChanges();
-*/
+
 		}
 	}
 }
