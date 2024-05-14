@@ -3,17 +3,14 @@ body {
     background-color: #ffffff;
     color: #333333;
     overflow-x: hidden;
-    background-image: url(https://cdn.vectorstock.com/i/500p/59/07/black-and-white-geometric-pattern-vector-3645907.jpg);
 }
 
 h1 {
-    font-family: "Josefin Sans", sans-serif;
     text-align: center;
-    color: darkgoldenrod;
 }
 
 h1, h2, h3, input#searchInput, select#categorySelect, select#dateSelect, select#account-id, label {
-    font-family: "Josefin Sans", sans-serif;
+    font-family: "Raleway", sans-serif;
     font-optical-sizing: auto;
     font-weight: <weight>;
     font-style: normal;
@@ -32,8 +29,8 @@ p, .details-link {
 /*Statisk navigationbar*/
 
 .topnav {
-/*    background-color: #10101082;
-*/    border-radius: 20px;
+    background-image: url(https://cdn.vectorstock.com/i/500p/59/07/black-and-white-geometric-pattern-vector-3645907.jpg);
+    background-color: white;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -59,7 +56,7 @@ p, .details-link {
 
 #home {
     font-size: 50px;
-    color: goldenrod;
+    color: gold;
 }
 
 select#account-id, label {
@@ -73,11 +70,12 @@ select#account-id, label {
 
 #vosaEventTitle {
     margin: 0px;
-    padding-left: 5em;
-    padding-top: 15px;
-    font-size: 3.5rem;
-    color: goldenrod;
-    font-family: "Josefin Sans", sans-serif;
+    margin-top: 6px;
+    padding-left: 2em;
+    font-size: 4.5rem;
+    color: gold;
+    font-family: auto;
+    text-shadow: 1px 1px 2px #7a7a7a;
 }
 
 #loginForm {
@@ -85,17 +83,16 @@ select#account-id, label {
 }
 
 #navBkg {
-    background-color: #b1ada6c7;
-    padding: 5px;
+    background-color: #607d8b99;
     border-radius: 20px;
     display: flex;
 }
 
-    #navBkg a, #loginForm {
-        color: white;
-        font-weight: 400;
-        margin: 5px;
-    }
+#navBkg a, #loginForm {
+    color: white;
+    font-weight: 300;
+    margin: 5px;
+}
 
 /*---------------------------------------------------------------------------------------*/
 /*IndexPage/StartPage*/
@@ -147,12 +144,13 @@ input#searchInput, select#categorySelect, select#dateSelect {
 #submit,
 .previous-button,
 .next-button, button {
-    background-color: goldenrod;
+    background-color: gold;
     color: #ffffff;
     border: none;
     padding: 6px 15px;
     font-weight: 400;
     cursor: pointer;
+    transition: background-color 0.3s;
     border-radius: 5px;
     text-decoration: none;
 }
