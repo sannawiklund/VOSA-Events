@@ -46,10 +46,9 @@
 				<button type="submit">Lämna en recension</button>
 			</a>
 			
-			<form asp-page="./EventDetails" method="post">
-				<input type="hidden" name="id" value="@Model.Event.ID" />
-				<button type="submit" name="action" value="ShowReviews">Visa recensioner</button>
-			</form>
+			<a asp-page="./EventDetails" asp-page-handler="ShowReviews" asp-route-id="@Model.Event.ID">
+				<button type="button">Visa recensioner</button>
+			</a>
 
 			@if (Model.ShowReviews && Model.Reviews != null && Model.Reviews.Any())
 			{
