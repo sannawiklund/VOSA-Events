@@ -19,6 +19,5 @@
         public virtual Account AdminAccount { get; set; }
 
         public virtual List<Booking> Bookings { get; set; }
-
     }
 }

@@ -82,7 +82,6 @@ namespace VOSA_Events.Pages
 		{
 			Event = database.Events.Find(id);
 			
-			//Plockar in från URL-parametern
 			ShowReviews = showReviews;
 
 			if (ShowReviews)
