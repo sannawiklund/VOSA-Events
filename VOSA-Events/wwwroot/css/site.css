@@ -10,6 +10,11 @@ h1 {
     font-family: "Josefin Sans", sans-serif;
     text-align: center;
     color: darkgoldenrod;
+    font-size: 45px;
+}
+
+h2 {
+    font-size: 20px;
 }
 
 h1, h2, h3, input#searchInput, select#categorySelect, select#dateSelect, select#account-id, label {
@@ -32,13 +37,14 @@ p, .details-link {
 /*Statisk navigationbar*/
 
 .topnav {
-    /*    background-color: #10101082;
-*/ border-radius: 20px;
+    border-radius: 20px;
     overflow: hidden;
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 1em;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
     .topnav a {
@@ -73,9 +79,9 @@ select#account-id, label {
 
 #vosaEventTitle {
     margin: 0px;
-    padding-left: 5em;
+    padding-left: 4em;
     padding-top: 15px;
-    font-size: 3.5rem;
+    font-size: 4rem;
     color: goldenrod;
     font-family: "Josefin Sans", sans-serif;
 }
@@ -85,7 +91,14 @@ select#account-id, label {
 }
 
 #navBkg {
-    background-color: #b1ada6c7;
+    /* From https://css.glass */
+    background: rgba(71, 110, 111, 0.73);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(71, 110, 111, 0.3);
+
     padding: 5px;
     border-radius: 20px;
     display: flex;
@@ -108,6 +121,20 @@ select#account-id, label {
     justify-content: center;
 }
 
+#main-container {
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.73);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 2em;
+    max-width: 80%;
+    margin: auto;
+    max-height: auto;
+}
+
 .search-form {
     margin-bottom: 20px;
 }
@@ -124,16 +151,16 @@ input#searchInput, select#categorySelect, select#dateSelect {
     grid-template-rows: repeat(2, 1fr);
     gap: 20px;
     justify-content: center;
-    padding: 1em;
+    padding: 1.5em;
 }
 
 .event {
     padding: 20px;
-    background-color: #f0f0f0;
+    background-color: white;
 }
 
 .details-link {
-    color: cadetblue;
+    color: #476e6f;
     text-decoration: none;
 }
 
@@ -192,7 +219,14 @@ input#searchInput, select#categorySelect, select#dateSelect {
 
 /*CartPage*/
 #shopping-cart-page {
-    background-color: #f0f0f0;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.73);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
     padding: 2em;
     display: grid;
     margin: 0 auto;
@@ -227,7 +261,7 @@ form.return-to-start-form {
 }
 
 .place-order-button {
-    background-color: steelblue;
+    background-color: rgb(71 110 111);
 }
 
 .clear-cart-button {
