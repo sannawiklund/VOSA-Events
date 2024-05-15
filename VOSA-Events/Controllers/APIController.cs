@@ -117,6 +117,22 @@ namespace VOSA_Events.Controllers
 
             return Ok(category);
         }
+
+        [HttpDelete("DeleteEvent/{id}")]
+        public ActionResult DeleteEvent(int id)
+        {
+            var eventToDelete = _database.Events.Find(id);
+
+            if (eventToDelete == null)
+            {
+                return NotFound();
+            }
+
+            _database.Events.Remove(eventToDelete);
+            _database.SaveChanges();
+
+            return Ok();
+        }
     }
 
 }
