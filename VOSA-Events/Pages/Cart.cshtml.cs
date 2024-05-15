@@ -11,9 +11,10 @@ namespace VOSA_Events.Pages
         //Variabler
         public List<Booking> Bookings { get; set; }
         public Event Events { get; set; }
+
         public int CountItems { get; set; }
         public double TotalPrice { get; set; }
-        public string emptyCart { get; set; }
+        public string EmptyCart { get; set; }
 
         //Databas
         private readonly AppDbContext database;
@@ -38,7 +39,7 @@ namespace VOSA_Events.Pages
             }
             else
             {
-                emptyCart = "Ojdå, här var det tomt!";
+                EmptyCart = "Ojdå, här var det tomt!";
                 return null;
             }
         }
@@ -78,11 +79,10 @@ namespace VOSA_Events.Pages
             {
                 CalculateTotalPrice();
                 CountCartItems();
-                database.SaveChanges();
             }
             else
             {
-                emptyCart = "Your cart is empty!";
+                EmptyCart = "Your cart is empty!";
             }
         }
 
@@ -103,6 +103,5 @@ namespace VOSA_Events.Pages
                 return RedirectToPage("/Cart");
             }
         }
-
     }
 }
