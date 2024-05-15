@@ -86,6 +86,37 @@ namespace VOSA_Events.Controllers
 
             return Ok();
         }
+
+        [HttpPost("AddCategory")]
+        public ActionResult<Category> AddCategory(CategoryDto categoryData)
+        {
+            if (categoryData == null || string.IsNullOrWhiteSpace(categoryData.Name))
+            {
+                return BadRequest(new { message = "Category name cannot be null or empty." });
+            }
+
+            Category newCategory = new Category
+            {
+                Name = categoryData.Name
+            };
+
+            _database.Categories.Add(newCategory);
+            _database.SaveChanges();
+
+            return CreatedAtAction(nameof(GetCategoryById), new { id = newCategory.ID }, newCategory);
+        }
+
+        [HttpGet("GetCategoryById/{id}")]
+        public ActionResult<Category> GetCategoryById(int id)
+        {
+            var category = _database.Categories.Find(id);
+            if (category == null)
+            {
+                return NotFound(new { message = $"Category with ID {id} not found." });
+            }
+
+            return Ok(category);
+        }
     }
 
 }
