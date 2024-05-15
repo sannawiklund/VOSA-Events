@@ -1,16 +1,24 @@
-/* Layout f�r alla sidor */
+﻿/* Layout f�r alla sidor */
 body {
     background-color: #ffffff;
     color: #333333;
     overflow-x: hidden;
+    background-image: url(https://cdn.vectorstock.com/i/500p/59/07/black-and-white-geometric-pattern-vector-3645907.jpg);
 }
 
 h1 {
+    font-family: "Josefin Sans", sans-serif;
     text-align: center;
+    color: darkgoldenrod;
+    font-size: 45px;
+}
+
+h2 {
+    font-size: 20px;
 }
 
 h1, h2, h3, input#searchInput, select#categorySelect, select#dateSelect, select#account-id, label {
-    font-family: "Raleway", sans-serif;
+    font-family: "Josefin Sans", sans-serif;
     font-optical-sizing: auto;
     font-weight: <weight>;
     font-style: normal;
@@ -29,13 +37,14 @@ p, .details-link {
 /*Statisk navigationbar*/
 
 .topnav {
-    background-image: url(https://cdn.vectorstock.com/i/500p/59/07/black-and-white-geometric-pattern-vector-3645907.jpg);
-    background-color: white;
+    border-radius: 20px;
     overflow: hidden;
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 1em;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
     .topnav a {
@@ -56,7 +65,7 @@ p, .details-link {
 
 #home {
     font-size: 50px;
-    color: gold;
+    color: goldenrod;
 }
 
 select#account-id, label {
@@ -70,12 +79,11 @@ select#account-id, label {
 
 #vosaEventTitle {
     margin: 0px;
-    margin-top: 6px;
-    padding-left: 2em;
-    font-size: 4.5rem;
-    color: gold;
-    font-family: auto;
-    text-shadow: 1px 1px 2px #7a7a7a;
+    padding-left: 4em;
+    padding-top: 15px;
+    font-size: 4rem;
+    color: goldenrod;
+    font-family: "Josefin Sans", sans-serif;
 }
 
 #loginForm {
@@ -83,16 +91,24 @@ select#account-id, label {
 }
 
 #navBkg {
-    background-color: #607d8b99;
+    /* From https://css.glass */
+    background: rgba(71, 110, 111, 0.73);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(71, 110, 111, 0.3);
+
+    padding: 5px;
     border-radius: 20px;
     display: flex;
 }
 
-#navBkg a, #loginForm {
-    color: white;
-    font-weight: 300;
-    margin: 5px;
-}
+    #navBkg a, #loginForm {
+        color: white;
+        font-weight: 400;
+        margin: 5px;
+    }
 
 /*---------------------------------------------------------------------------------------*/
 /*IndexPage/StartPage*/
@@ -103,6 +119,20 @@ select#account-id, label {
 .top-container {
     display: grid;
     justify-content: center;
+}
+
+#main-container {
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.73);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 2em;
+    max-width: 80%;
+    margin: auto;
+    max-height: auto;
 }
 
 .search-form {
@@ -121,16 +151,16 @@ input#searchInput, select#categorySelect, select#dateSelect {
     grid-template-rows: repeat(2, 1fr);
     gap: 20px;
     justify-content: center;
-    padding: 1em;
+    padding: 1.5em;
 }
 
 .event {
     padding: 20px;
-    background-color: #f0f0f0;
+    background-color: white;
 }
 
 .details-link {
-    color: cadetblue;
+    color: #476e6f;
     text-decoration: none;
 }
 
@@ -143,14 +173,13 @@ input#searchInput, select#categorySelect, select#dateSelect {
 
 #submit,
 .previous-button,
-.next-button, button {
-    background-color: gold;
+.next-button,button {
+    background-color: goldenrod;
     color: #ffffff;
     border: none;
     padding: 6px 15px;
     font-weight: 400;
     cursor: pointer;
-    transition: background-color 0.3s;
     border-radius: 5px;
     text-decoration: none;
 }
@@ -163,6 +192,11 @@ input#searchInput, select#categorySelect, select#dateSelect {
 
 /*EventDetailsPage*/
 
+
+    .follow-button.followed {
+        background-color: grey; /* Ändra färgen till grå när knappen är klickad */
+        cursor: not-allowed; /* Ändra pekaren till en "not-allowed"-pekare när knappen är klickad */
+    }
 
 
 
@@ -185,7 +219,14 @@ input#searchInput, select#categorySelect, select#dateSelect {
 
 /*CartPage*/
 #shopping-cart-page {
-    background-color: #f0f0f0;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.73);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
     padding: 2em;
     display: grid;
     margin: 0 auto;
@@ -220,7 +261,7 @@ form.return-to-start-form {
 }
 
 .place-order-button {
-    background-color: steelblue;
+    background-color: rgb(71 110 111);
 }
 
 .clear-cart-button {

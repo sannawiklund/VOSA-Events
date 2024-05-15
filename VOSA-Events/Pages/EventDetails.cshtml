@@ -20,7 +20,10 @@
 				<p>@Model.Event.Date.ToString("yyyy-MM-dd HH:mm")</p>
 				<p>@Model.Event.City</p>
 
-				<form method="post">
+			<form asp-page-handler="Order" method="post">
+				<input type="hidden" name="id" value="@Model.Event.ID">
+
+				<!-- Lägg till select-elementet för att välja antal biljetter -->
 				<select name="quantity">
 					<option>1</option>
 					<option>2</option>
@@ -29,33 +32,43 @@
 					<option>5</option>
 				</select>
 
-				</form>
+				<!-- Lägg till en submit-knapp för att skicka formuläret -->
+				<button type="submit">Boka</button>
+			</form>
 
-				<form asp-page-handler="Order" method="post">
-					<input type="hidden" name="id" value="@Model.Event.ID">
-					<button type="submit">Boka</button>
-				</form>
 
-				<form asp-page-handler="Follow" method="post">
-					<input type="hidden" name="id" value="@Model.Event.ID">
-				<button type="submit" @(Model.IsEventFollowed(Model.Event.ID) ? "disabled" : "")>Bevaka</button>
-				</form>
-
-			@* Vet inte hur vi ska implementera att man ser reviews ännu.
-				<a asp-page="./EventDetails" class="event-link">
-				<input type="button" name="review-id" class="event-id" />
-				<button type="submit" class="review-button">See reviews</button>
-			</a> *@
+			<form asp-page-handler="Follow" method="post">
+				<input type="hidden" name="id" value="@Model.Event.ID">
+				<button type="submit" class="follow-button @(Model.IsEventFollowed(Model.Event.ID) ? "followed" : "")">Bevaka</button>
+			</form>
 
 			<a asp-page="./Review" asp-route-eventId="@Model.Event.ID">
 				<input type="hidden" name="eventId" value="@Model.Event.ID" />
 				<button type="submit">Lämna en recension</button>
 			</a>
+			
+			<a asp-page="./EventDetails" asp-page-handler="ShowReviews" asp-route-id="@Model.Event.ID"
+										asp-route-showReviews="@(Model.ShowReviews ? "false" : "true")">
+				<button type="button">@(Model.ShowReviews ? "Dölj" : "Visa") recensioner</button>
+			</a>
+
+			@if (Model.ShowReviews && Model.Reviews != null && Model.Reviews.Any())
+			{
+				<div class="show-review">
+					<h3>Recensioner</h3>
+					@foreach (var review in Model.Reviews)
+					{
+						<p>@review.Description</p>
+						<p>Betyg: @review.Rating</p>
+					}
+				</div>
+			}
 
 			<button class="return-button">
 					<a asp-page="./Index">Return to events</a>
 				</button>
 		</section>
+			
 	</main>
 </body>
 </html>
