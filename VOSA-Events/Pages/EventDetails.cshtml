@@ -36,10 +36,10 @@
 					<button type="submit">Boka</button>
 				</form>
 
-				<form asp-page-handler="Follow" method="post">
-					<input type="hidden" name="id" value="@Model.Event.ID">
-				<button type="submit" @(Model.IsEventFollowed(Model.Event.ID) ? "disabled" : "")>Bevaka</button>
-				</form>
+			<form asp-page-handler="Follow" method="post">
+				<input type="hidden" name="id" value="@Model.Event.ID">
+				<button type="submit" class="follow-button @(Model.IsEventFollowed(Model.Event.ID) ? "followed" : "")">Bevaka</button>
+			</form>
 
 			<a asp-page="./Review" asp-route-eventId="@Model.Event.ID">
 				<input type="hidden" name="eventId" value="@Model.Event.ID" />
