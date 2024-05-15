@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+ï»¿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using VOSA_Events.Models;
@@ -11,16 +11,15 @@ namespace VOSA_Events.Pages
         //Variabler
         public List<Booking> Bookings { get; set; }
         public Event Events { get; set; }
-
         public int CountItems { get; set; }
         public double TotalPrice { get; set; }
-        public string EmptyCart { get; set; }
+        public string emptyCart { get; set; }
 
         //Databas
         private readonly AppDbContext database;
         private readonly AccessControl accessControl;
 
-        public CartModel(AppDbContext database, AccessControl accessControl) //För att få åtkomst till databasen och accesskontrollen i detta scope
+        public CartModel(AppDbContext database, AccessControl accessControl) //Fï¿½r att fï¿½ ï¿½tkomst till databasen och accesskontrollen i detta scope
         {
             this.database = database;
             this.accessControl = accessControl;
@@ -39,7 +38,7 @@ namespace VOSA_Events.Pages
             }
             else
             {
-                EmptyCart = "Ojdå, här var det tomt!";
+                emptyCart = "Ojdï¿½, hï¿½r var det tomt!";
                 return null;
             }
         }
@@ -79,10 +78,11 @@ namespace VOSA_Events.Pages
             {
                 CalculateTotalPrice();
                 CountCartItems();
+                database.SaveChanges();
             }
             else
             {
-                EmptyCart = "Your cart is empty!";
+                emptyCart = "Your cart is empty!";
             }
         }
 
@@ -103,5 +103,6 @@ namespace VOSA_Events.Pages
                 return RedirectToPage("/Cart");
             }
         }
+
     }
 }
