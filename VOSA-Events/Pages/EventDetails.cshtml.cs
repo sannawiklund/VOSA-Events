@@ -21,41 +21,43 @@ namespace VOSA_Events.Pages
 		//Variabler
 		public Event Event { get; set; }
 		public List<Review> Reviews { get; set; }
+		public Booking Booking { get; set; }
 		public bool ShowReviews { get; set; }
 
-		//Metoder
-		public void OnGet(int id)
+        //Metoder
+        private Event GetEventByID(int id)
+        {
+            return Event = database.Events.First(e => e.ID == id);
+        }
+
+        public void OnGet(int id) // Hämtar detaljer för ett specifikt event baserat på ID. 
+        {
+            Event = GetEventByID(id);
+        }
+
+		public IActionResult OnPost(int id)
 		{
-			Event = database.Events.Find(id);
+			Event = GetEventByID(id);
 
-		}
-		public IActionResult OnPostOrder(int quantity, int id )
-		{
-
-			var loggedInUserId = accessControl.LoggedInAccountID;
-
-			var existingEvent = database.Bookings.SingleOrDefault(b => b.AccountID == loggedInUserId && b.EventID == id);
-
-			if (existingEvent != null)
+			if (Event != null)
 			{
-				existingEvent.Quantity += quantity;
-			}
-
-			else
-			{
-				var bookings = new Booking
+				// Skapa en ny varukorg som tillhör den nuvarande inloggade användare om mins ett event blivit bokat. 
+				var newBooking = new Booking
 				{
-					EventID = id,
-					AccountID = loggedInUserId,
-					Quantity = quantity
+					AccountID = accessControl.LoggedInAccountID,
+					EventID = id, 
+					Quantity = 1
 				};
 
-				database.Bookings.Add(bookings);
+				database.Bookings.Add(newBooking);
+				database.SaveChanges();
+
+				return RedirectToPage("/Cart");
 			}
-
-			database.SaveChanges();
-
-			return RedirectToPage("/Index");
+			else
+			{
+				return NotFound();
+			}
 		}
 
 		public IActionResult OnPostFollow(int id)
