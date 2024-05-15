@@ -35,32 +35,33 @@ namespace VOSA_Events.Pages
             Event = GetEventByID(id);
         }
 
-		public IActionResult OnPost(int id)
-		{
-			Event = GetEventByID(id);
+        public IActionResult OnPost(int id, int quantity)
+        {
+            Event = GetEventByID(id);
 
-			if (Event != null)
-			{
-				// Skapa en ny varukorg som tillhör den nuvarande inloggade användare om mins ett event blivit bokat. 
-				var newBooking = new Booking
-				{
-					AccountID = accessControl.LoggedInAccountID,
-					EventID = id, 
-					Quantity = 1
-				};
+            if (Event != null)
+            {
+                // Skapa en ny varukorg som tillhör den nuvarande inloggade användare om mins ett event blivit bokat. 
+                var newBooking = new Booking
+                {
+                    AccountID = accessControl.LoggedInAccountID,
+                    EventID = id,
+                    Quantity = quantity // Använd det valda värdet för kvantiteten
+                };
 
-				database.Bookings.Add(newBooking);
-				database.SaveChanges();
+                database.Bookings.Add(newBooking);
+                database.SaveChanges();
 
-				return RedirectToPage("/Cart");
-			}
-			else
-			{
-				return NotFound();
-			}
-		}
+                return RedirectToPage("/Cart");
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
 
-		public IActionResult OnPostFollow(int id)
+
+        public IActionResult OnPostFollow(int id)
 		{
 			var loggedInUserId = accessControl.LoggedInAccountID;
 
