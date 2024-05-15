@@ -11,11 +11,9 @@
 	<title>@ViewData["Title"]</title>
 	<meta charset="UTF-8">
 </head>
-
 <body>
 
-    @* The header is placed in layout.cshtml since it is static over all pages *@
-    <div id="main-container">
+    <div class="top-container">
 
         <header class="header">
             <h1>Välkommen, <span id="loggedInUser">@accessControl.LoggedInAccountName</span>!</h1>
@@ -23,46 +21,41 @@
             *@
         </header>
 
-        <div class="top-container">
+        <form method="get" class="search-form">
+            @* 		<label for="searchInput">Search for an event:</label> *@
+            <input id="searchInput" type="text" name="searchItem" placeholder="Sök efter en mässa ">
+            <input type="hidden" name="pageNumber" value="1" />
 
-            <form method="get" class="search-form">
-                @* 		<label for="searchInput">Search for an event:</label> *@
-                <input id="searchInput" type="text" name="searchItem" placeholder="Sök efter en mässa ">
-                <input type="hidden" name="pageNumber" value="1" />
+            @* 		<label for="categorySelect">Välj en kategori:</label>
+            *@		<select name="category" id="categorySelect">
+                <option>Alla kategorier</option>
+                <option>Mat & Dryck</option>
+                <option>Mat</option>
+                <option>Dryck</option>
+            </select>
 
-                @* 		<label for="categorySelect">Välj en kategori:</label>
-                *@		<select name="category" id="categorySelect">
-                    <option>Alla kategorier</option>
-                    <option>Mat & Dryck</option>
-                    <option>Mat</option>
-                    <option>Dryck</option>
-                </select>
+            @* 		<label for="dateSelect">Date:</label>
+            *@		<select id="dateSelect" name="date">
+                <option>Mässor som sker snart</option>
+                <option>Mässor som sker längre fram</option>
+            </select>
 
-                @* 		<label for="dateSelect">Date:</label>
-                *@		<select id="dateSelect" name="date">
-                    <option>Mässor som sker snart</option>
-                    <option>Mässor som sker längre fram</option>
-                </select>
-
-                <button id="submit" type="submit">Sök</button>
-            </form>
-        </div>
-
-
+            <button id="submit" type="submit">Sök</button>
+        </form>
+    </div>
 
         <main class="event-grid">
-
             @if (Model.Events.Any())
             {
                 @foreach (var events in Model.Events)
                 {
                     <article class="event">
-                        <a asp-page="./EventDetails" asp-route-id="@events.ID" class="details-link">
-                            <h2>@events.Name</h2>
-                            <p>@events.Price SEK</p>
-                            <p>@events.Category</p>
-                            <a asp-page="./EventDetails" asp-route-id="@events.ID" class="details-link">Vill du läsa mer? Klicka här!</a>
-                        </a>
+                    <a asp-page ="./EventDetails" asp-route-id="@events.ID" class="details-link">
+                        <h2>@events.Name</h2>
+                        <p>@events.Price SEK</p>
+                        <p>@events.Category</p>
+                        <a asp-page="./EventDetails" asp-route-id="@events.ID" class="details-link">Vill du läsa mer? Klicka här!</a>
+                    </a>    
                     </article>
                 }
             }
@@ -73,27 +66,28 @@
         </main>
 
 
+
         <footer class="footer">
 
             <div id="paginationBtns">
-                @if (Model.PageNumber > 1)
-                {
-                    <button type="submit">
-                        <a asp-page="./Index" asp-route-pageNumber="@(Model.PageNumber - 1)" asp-route-category="@Model.Category" class="previous-button">Föregående</a>
-                    </button>
-                }
+            @if (Model.PageNumber > 1)
+            {
+                <button type="submit">
+                    <a asp-page="./Index" asp-route-pageNumber="@(Model.PageNumber - 1)" asp-route-category="@Model.Category" class="previous-button">Föregående</a>
+                </button>
+            }
 
-                @if (Model.PageNumber < Model.TotalPages)
-                {
-                    <button type="submit">
-                        <a asp-page="./Index" asp-route-pageNumber="@(Model.PageNumber + 1)" asp-route-category="@Model.Category" class="next-button">Nästa</a>
-                    </button>
-                }
+            @if (Model.PageNumber < Model.TotalPages)
+            {
+                <button type="submit">
+                    <a asp-page="./Index" asp-route-pageNumber="@(Model.PageNumber + 1)" asp-route-category="@Model.Category" class="next-button">Nästa</a>
+                </button>
+            }
             </div>
 
         </footer>
-    </div>
 
+   
 
 
 </body>

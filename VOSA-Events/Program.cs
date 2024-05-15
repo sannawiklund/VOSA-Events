@@ -15,55 +15,55 @@ builder.Services.AddAuthentication(options =>
 })
 .AddCookie(options =>
 {
-    // When a user logs in to Google for the first time, create a local account for that user in our database.
-    options.Events.OnValidatePrincipal += async context =>
-    {
-        var serviceProvider = context.HttpContext.RequestServices;
-        using var db = new AppDbContext(serviceProvider.GetRequiredService<DbContextOptions<AppDbContext>>());
+	// When a user logs in to Google for the first time, create a local account for that user in our database.
+	options.Events.OnValidatePrincipal += async context =>
+	{
+		var serviceProvider = context.HttpContext.RequestServices;
+		using var db = new AppDbContext(serviceProvider.GetRequiredService<DbContextOptions<AppDbContext>>());
 
-        string subject = context.Principal.FindFirstValue(ClaimTypes.NameIdentifier);
-        string issuer = context.Principal.FindFirst(ClaimTypes.NameIdentifier).Issuer;
-        string name = context.Principal.FindFirst(ClaimTypes.Name).Value;
+		string subject = context.Principal.FindFirstValue(ClaimTypes.NameIdentifier);
+		string issuer = context.Principal.FindFirst(ClaimTypes.NameIdentifier).Issuer;
+		string name = context.Principal.FindFirst(ClaimTypes.Name).Value;
 
-        // H?mta rollen fr?n databasen baserat p? anv?ndarens NameIdentifier
-        var accountFromDb = db.Accounts.FirstOrDefault(p => p.OpenIDIssuer == issuer && p.OpenIDSubject == subject);
+		// Hämta rollen från databasen baserat på användarens NameIdentifier
+		var accountFromDb = db.Accounts.FirstOrDefault(p => p.OpenIDIssuer == issuer && p.OpenIDSubject == subject);
 
-        string role = "DefaultRole"; // Standardroll om ingen matchning hittas
+		string role = "DefaultRole"; // Standardroll om ingen matchning hittas
 
-        if (accountFromDb != null)
-        {
-            // Om Account finns, tilldela anv?ndarens roll
-            role = accountFromDb.Role;
-        }
+		if (accountFromDb != null)
+		{
+			// Om Account finns, tilldela användarens roll
+			role = accountFromDb.Role;
+		}
 
-        // Kontrollera om rollen ?r giltig (admin eller user), annars anv?nd standardrollen
-        if (role != "Admin" && role != "User")
-        {
-            role = "DefaultRole";
-        }
+		// Kontrollera om rollen är giltig (admin eller user), annars använd standardrollen
+		if (role != "Admin" && role != "User")
+		{
+			role = "DefaultRole";
+		}
 
-        if (accountFromDb == null)
-        {
-            accountFromDb = new Account
-            {
-                OpenIDIssuer = issuer,
-                OpenIDSubject = subject,
-                Name = name,
-                Role = role
-            };
-            db.Accounts.Add(accountFromDb);
-        }
-        else
-        {
-            // If the account already exists, just update the name in case it has changed.
-            accountFromDb.Name = name;
-        }
+		if (accountFromDb == null)
+		{
+			accountFromDb = new Account
+			{
+				OpenIDIssuer = issuer,
+				OpenIDSubject = subject,
+				Name = name,
+				Role = role
+			};
+			db.Accounts.Add(accountFromDb);
+		}
+		else
+		{
+			// If the account already exists, just update the name in case it has changed.
+			accountFromDb.Name = name;
+		}
 
-        await db.SaveChangesAsync();
-    };
+		await db.SaveChangesAsync();
+	};
 
 
-    /*options.Events.OnValidatePrincipal += async context =>
+	options.Events.OnValidatePrincipal += async context =>
 	{
 		var serviceProvider = context.HttpContext.RequestServices;
 		using var db = new AppDbContext(serviceProvider.GetRequiredService<DbContextOptions<AppDbContext>>());
@@ -74,7 +74,7 @@ builder.Services.AddAuthentication(options =>
 		var eventName = context.Principal.FindFirst("event_name")?.Value;
 		if (!string.IsNullOrEmpty(eventName))
 		{
-			// Skapa eller uppdatera h?ndelse
+			// Skapa eller uppdatera händelse
 			var eventId = int.Parse(context.Principal.FindFirst("event_id").Value);
 			var eventPrice = int.Parse(context.Principal.FindFirst("event_price").Value);
 			var eventDescription = context.Principal.FindFirst("event_description")?.Value;
@@ -88,7 +88,7 @@ builder.Services.AddAuthentication(options =>
 
 			if (existingEvent == null)
 			{
-				// M?ssan finns inte, skapa en ny
+				// Mässan finns inte, skapa en ny
 				var newEvent = new Event
 				{
 					ID = eventId,
@@ -106,7 +106,7 @@ builder.Services.AddAuthentication(options =>
 			}
 			else
 			{
-				// M?ssan finns redan, uppdatera information
+				// Mässan finns redan, uppdatera information
 				existingEvent.Name = eventName;
 				existingEvent.Price = eventPrice;
 				existingEvent.Description = eventDescription;
@@ -150,7 +150,7 @@ builder.Services.AddAuthentication(options =>
 		}
 
 		await db.SaveChangesAsync();
-	};*/
+	};
 
 })
 .AddOpenIdConnect("Google", options =>
@@ -189,8 +189,8 @@ builder.Services.AddAuthorization(options =>
 
 builder.Services.AddRazorPages(options =>
 {
-    //L?gg till de sidor som kr?ver en viss beh?righet f?r att visa. 
-}).AddRazorRuntimeCompilation();
+    //Lägg till de sidor som kräver en viss behörighet för att visa. 
+}).AddRazorRuntimeCompilation(); 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddControllers();
 

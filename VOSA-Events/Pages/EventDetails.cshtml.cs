@@ -20,48 +20,42 @@ namespace VOSA_Events.Pages
 
 		//Variabler
 		public Event Event { get; set; }
-		public List<Review> Reviews { get; set; }
-		public Booking Booking { get; set; }
-		public bool ShowReviews { get; set; }
 
-        //Metoder
-        private Event GetEventByID(int id)
-        {
-            return Event = database.Events.First(e => e.ID == id);
-        }
+		//Metoder
+		public void OnGet(int id)
+		{
+			Event = database.Events.Find(id);
+		}
+		public IActionResult OnPostOrder(int quantity, int id )
+		{
 
-        public void OnGet(int id) // Hämtar detaljer för ett specifikt event baserat på ID. 
-        {
-            Event = GetEventByID(id);
-        }
+			var loggedInUserId = accessControl.LoggedInAccountID;
 
-        public IActionResult OnPost(int id, int quantity)
-        {
-            Event = GetEventByID(id);
+			var existingEvent = database.Bookings.SingleOrDefault(b => b.AccountID == loggedInUserId && b.EventID == id);
 
-            if (Event != null)
-            {
-                // Skapa en ny varukorg som tillhör den nuvarande inloggade användare om mins ett event blivit bokat. 
-                var newBooking = new Booking
-                {
-                    AccountID = accessControl.LoggedInAccountID,
-                    EventID = id,
-                    Quantity = quantity // Använd det valda värdet för kvantiteten
-                };
+			if (existingEvent != null)
+			{
+				existingEvent.Quantity += quantity;
+			}
 
-                database.Bookings.Add(newBooking);
-                database.SaveChanges();
+			else
+			{
+				var bookings = new Booking
+				{
+					EventID = id,
+					AccountID = loggedInUserId,
+					Quantity = quantity
+				};
 
-                return RedirectToPage("/Cart");
-            }
-            else
-            {
-                return NotFound();
-            }
-        }
+				database.Bookings.Add(bookings);
+			}
 
+			database.SaveChanges();
 
-        public IActionResult OnPostFollow(int id)
+			return RedirectToPage("/Index");
+		}
+
+		public IActionResult OnPostFollow(int id)
 		{
 			var loggedInUserId = accessControl.LoggedInAccountID;
 
@@ -75,24 +69,6 @@ namespace VOSA_Events.Pages
 				database.SaveChanges();
 
 			return RedirectToPage("/Index");
-		}
-
-		public void LoadReviews(int id)
-		{
-			Reviews = database.Reviews.Where(r => r.EventID == id).ToList();
-		}
-		public ActionResult OnGetShowReviews(int id, bool showReviews)
-		{
-			Event = database.Events.Find(id);
-			
-			ShowReviews = showReviews;
-
-			if (ShowReviews)
-			{
-				LoadReviews(id);
-			}
-
-			return Page();
 		}
 
 		public bool IsEventFollowed(int eventId)
