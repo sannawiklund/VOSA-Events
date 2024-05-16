@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+ï»¿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using VOSA_Events.Models;
@@ -19,7 +19,7 @@ namespace VOSA_Events.Pages
         private readonly AppDbContext database;
         private readonly AccessControl accessControl;
 
-        public CartModel(AppDbContext database, AccessControl accessControl) //För att få åtkomst till databasen och accesskontrollen i detta scope
+        public CartModel(AppDbContext database, AccessControl accessControl) //Fï¿½r att fï¿½ ï¿½tkomst till databasen och accesskontrollen i detta scope
         {
             this.database = database;
             this.accessControl = accessControl;
@@ -38,7 +38,7 @@ namespace VOSA_Events.Pages
             }
             else
             {
-                emptyCart = "Ojdå, här var det tomt!";
+                emptyCart = "Ojdï¿½, hï¿½r var det tomt!";
                 return null;
             }
         }
