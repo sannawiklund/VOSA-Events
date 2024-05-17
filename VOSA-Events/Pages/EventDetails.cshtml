@@ -1,61 +1,71 @@
 ﻿@page
 @model VOSA_Events.Pages.EventDetailsModel
 @{
+    ViewData["Title"] = "Event Details";
 }
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Event Details</title>
-</head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Anslut din CSS-fil här -->
+</head>
 <body>
-	<h2><a asp-page="./Index">VOSA-EVENTS</a></h2>
-	<main>
-		<h2>Event Details</h2>
-		<section>
-				<h3>@Model.Event.Name</h3>
-				<p>@Model.Event.Description</p>
-				<p>Price: @Model.Event.Price SEK</p>
-				<p>@Model.Event.Date.ToString("yyyy-MM-dd HH:mm")</p>
-				<p>@Model.Event.City</p>
+    <main>
+        <div id="eventDetails-container">
 
-				<form method="post">
-				<select name="quantity">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
-				</select>
+@*             <h2 class="section-title">Event Details</h2>
+ *@            <section class="event-details-section">
+                <h3 class="event-title">@Model.Event.Name</h3>
+                
+                <hr></hr>
 
-				</form>
+                <div id="eventContext">
+                    <p class="event-description">@Model.Event.Description</p>
+                    <p class="event-info">Pris: @Model.Event.Price SEK | Datum: @Model.Event.Date.ToString("yyyy-MM-dd HH:mm") | Plats: @Model.Event.City</p>
+                </div>
 
-				<form asp-page-handler="Order" method="post">
-					<input type="hidden" name="id" value="@Model.Event.ID">
-					<button type="submit">Boka</button>
-				</form>
+                <div id="book-container">
+                    <form class="order-form" asp-page-handler="Order" method="post">
+                        <input type="hidden" name="id" value="@Model.Event.ID">
+                        <button type="submit" class="order-button">Boka biljett</button>
+                    </form>
+                    <form class="quantity-form" method="post">
+                        <select name="quantity" class="quantity-select">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </form>
+                </div>
 
-				<form asp-page-handler="Follow" method="post">
-					<input type="hidden" name="id" value="@Model.Event.ID">
-				<button type="submit" @(Model.IsEventFollowed(Model.Event.ID) ? "disabled" : "")>Bevaka</button>
-				</form>
+                <hr></hr>
+                
+                <div id="event-buttons">
 
-			@* Vet inte hur vi ska implementera att man ser reviews ännu.
-				<a asp-page="./EventDetails" class="event-link">
-				<input type="button" name="review-id" class="event-id" />
-				<button type="submit" class="review-button">See reviews</button>
-			</a> *@
+                    <form class="follow-form" asp-page-handler="Follow" method="post">
+                        <input type="hidden" name="id" value="@Model.Event.ID">
+                        <button type="submit" class="follow-button" @(Model.IsEventFollowed(Model.Event.ID) ? "disabled" : "")>Bevaka evenemanget</button>
+                    </form>
 
-			<a asp-page="./Review" asp-route-eventId="@Model.Event.ID">
-				<input type="hidden" name="eventId" value="@Model.Event.ID" />
-				<button type="submit">Lämna en recension</button>
-			</a>
+                    <a class="review-link" asp-page="./Review" asp-route-eventId="@Model.Event.ID">
+                        <button type="submit" class="review-button">Lämna en recension</button>
+                    </a>
 
-			<button class="return-button">
-					<a asp-page="./Index">Return to events</a>
-				</button>
-		</section>
-	</main>
+                    <button class="return-button">
+                        <a asp-page="./Index">Återgå till startsidan</a>
+                    </button>
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
 </body>
 </html>
+
