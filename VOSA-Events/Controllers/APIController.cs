@@ -5,8 +5,10 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 using VOSA_Events.Data;
 using VOSA_Events.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace VOSA_Events.Controllers
 {
@@ -27,7 +29,7 @@ namespace VOSA_Events.Controllers
         {
             IQueryable<Event> query = _database.Events;
             // Tom sökning ska ge alla resultat, annars filtrera
-            if (!String.IsNullOrEmpty(searchInput))
+            if (!string.IsNullOrEmpty(searchInput))
             {
                 query = query.Where(e => e.Name.Contains(searchInput));
             }
@@ -116,6 +118,51 @@ namespace VOSA_Events.Controllers
             }
 
             return Ok(category);
+        }
+
+        [HttpPut("UpdateEvent/{id}")]
+        public async Task<IActionResult> UpdateEvent(int id, EventDto eventDto)
+        {
+            if (id != eventDto.ID)
+            {
+                return BadRequest();
+            }
+
+            var eventToUpdate = await _database.Events.FirstOrDefaultAsync(e => e.ID == id);
+            if (eventToUpdate == null)
+            {
+                return NotFound();
+            }
+
+            eventToUpdate.Name = eventDto.Name;
+            eventToUpdate.Price = eventDto.Price;
+            eventToUpdate.Description = eventDto.Description;
+            eventToUpdate.City = eventDto.City;
+            eventToUpdate.Date = eventDto.Date;
+            eventToUpdate.TicketQuantity = eventDto.TicketQuantity;
+            eventToUpdate.ImagePath = eventDto.ImagePath;
+
+            try
+            {
+                await _database.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!EventExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+        private bool EventExists(int id)
+        {
+            return _database.Events.Any(e => e.ID == id);
         }
 
         [HttpDelete("DeleteEvent/{id}")]
