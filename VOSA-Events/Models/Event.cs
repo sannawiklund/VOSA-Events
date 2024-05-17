@@ -4,7 +4,7 @@
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public int Price { get; set; }
+        public double Price { get; set; }
         public string Description { get; set; }
         public string City { get; set; }
         public DateTime Date { get; set; }
@@ -23,7 +23,7 @@
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public int Price { get; set; }
+        public double Price { get; set; }
         public string Description { get; set; }
         public string City { get; set; }
         public DateTime Date { get; set; }

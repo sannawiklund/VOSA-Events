@@ -38,7 +38,6 @@ namespace VOSA_Events.Pages
             }
             else
             {
-                emptyCart = "Ojd�, h�r var det tomt!";
                 return null;
             }
         }
