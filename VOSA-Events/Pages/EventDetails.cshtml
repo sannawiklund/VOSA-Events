@@ -14,11 +14,9 @@
 <body>
     <main>
         <div id="eventDetails-container">
-
-@*             <h2 class="section-title">Event Details</h2>
- *@            <section class="event-details-section">
+            <section class="event-details-section">
                 <h3 class="event-title">@Model.Event.Name</h3>
-                
+
                 <hr></hr>
 
                 <div id="eventContext">
@@ -29,23 +27,20 @@
                 <div id="book-container">
                     <form class="order-form" asp-page-handler="Order" method="post">
                         <input type="hidden" name="id" value="@Model.Event.ID">
-                        <button type="submit" class="order-button">Boka biljett</button>
-                    </form>
-                    <form class="quantity-form" method="post">
-                        <select name="quantity" class="quantity-select">
+                        <select name="quantity" class="quantity-select" asp-for="Quantity">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
                             <option>5</option>
                         </select>
+                        <button type="submit" class="order-button">Boka biljett</button>
                     </form>
                 </div>
 
                 <hr></hr>
-                
-                <div id="event-buttons">
 
+                <div id="event-buttons">
                     <form class="follow-form" asp-page-handler="Follow" method="post">
                         <input type="hidden" name="id" value="@Model.Event.ID">
                         <button type="submit" class="follow-button" @(Model.IsEventFollowed(Model.Event.ID) ? "disabled" : "")>Bevaka evenemanget</button>
@@ -59,13 +54,8 @@
                         <a asp-page="./Index">Återgå till startsidan</a>
                     </button>
                 </div>
-
             </section>
-
         </div>
-
     </main>
-
 </body>
 </html>
-
