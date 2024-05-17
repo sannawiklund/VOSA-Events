@@ -38,5 +38,20 @@ namespace VOSA_Events.Pages
                                        .ToList();
 
         }
+        public IActionResult OnPostUnfollowEvent(int eventId)
+        {
+            var loggedInUserId = accessControl.LoggedInAccountID;
+
+            var followedEvent = database.Follows
+                                        .FirstOrDefault(f => f.AccountID == loggedInUserId && f.EventID == eventId);
+
+            if (followedEvent != null)
+            {
+                database.Follows.Remove(followedEvent);
+                database.SaveChanges();
+            }
+
+            return RedirectToPage("MyEvents");
+        }
     }
 }

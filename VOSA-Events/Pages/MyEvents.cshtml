@@ -32,7 +32,9 @@
                 <ul>
                 <li>@follows.Name</li>
                 </ul>
-                <button>Sluta följ</button>
+                <form method="post" asp-page-handler="UnfollowEvent" asp-route-eventId="@follows.ID">
+                    <button type="submit">Sluta följ</button>
+                </form>
             }
         }
 
