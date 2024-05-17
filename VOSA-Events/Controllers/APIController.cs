@@ -134,15 +134,13 @@ namespace VOSA_Events.Controllers
                 return NotFound();
             }
 
-			UpdateProperties(eventToUpdate, eventDto);
-
-			/*eventToUpdate.Name = eventDto.Name;
+            eventToUpdate.Name = eventDto.Name;
             eventToUpdate.Price = eventDto.Price;
             eventToUpdate.Description = eventDto.Description;
             eventToUpdate.City = eventDto.City;
-            eventToUpdate.Date = eventDto.Date; 
+            eventToUpdate.Date = eventDto.Date;
             eventToUpdate.TicketQuantity = eventDto.TicketQuantity;
-            eventToUpdate.ImagePath = eventDto.ImagePath;*/
+            eventToUpdate.ImagePath = eventDto.ImagePath;
 
             try
             {
@@ -156,21 +154,7 @@ namespace VOSA_Events.Controllers
             return NoContent();
         }
 
-		private void UpdateProperties(object target, object source)
-		{
-			var targetProps = target.GetType().GetProperties();
-			var sourceProps = source.GetType().GetProperties();
-
-			foreach (var property in sourceProps)
-			{
-				var tgtProp = targetProps.FirstOrDefault(p => p.Name == property.Name);
-				if (tgtProp != null && property.GetValue(source) != null)
-				{
-					tgtProp.SetValue(target, property.GetValue(source));
-				}
-			}
-		}
-		
+			
         [HttpDelete("DeleteEvent/{id}")]
         public ActionResult DeleteEvent(int id)
         {
