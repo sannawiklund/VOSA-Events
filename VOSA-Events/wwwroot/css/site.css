@@ -28,7 +28,7 @@ select#account-id, label {
     font-size: 15px;
 }
 
-p, .details-link {
+p, .details-link, td {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
