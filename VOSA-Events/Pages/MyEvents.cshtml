@@ -2,3 +2,51 @@
 @model VOSA_Events.Pages.MyEventsModel
 @{
 }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+    @* The header is placed in layout.cshtml since it is static over all pages *@
+    <div id="main-container">
+
+        @if ((Model.BookedEvents != null && Model.BookedEvents.Any()) || (Model.FollowedEvents != null && Model.FollowedEvents.Any()))
+        {
+            <h2>Bokade Mässor</h2>
+            @foreach (var booking in Model.BookedEvents)
+            {
+                <ul>
+                <li>@booking.Event.Name</li>
+                    <p>Antal bokade biljetter: @booking.Quantity</p>
+                </ul>
+            }
+            <h2>Följda Mässor</h2>
+            @foreach (var follows in Model.FollowedEvents)
+            {
+                <ul>
+                <li>@follows.Name</li>
+                </ul>
+                <form method="post" asp-page-handler="UnfollowEvent" asp-route-eventId="@follows.ID">
+                    <button type="submit">Sluta följ</button>
+                </form>
+            }
+        }
+
+        else
+        {
+            <p>Du har inga bokade eller bevakade evenemang</p>
+        }
+ 
+    </div>
+
+
+
+</body>
+</html>
