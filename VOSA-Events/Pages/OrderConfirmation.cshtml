@@ -14,17 +14,15 @@
 </head>
 <body>
 
-    <header class="header">
-        <h1><a asp-page="./Index">VOSA-EVENTS</a></h1>
-    </header>
     <main>
         <section class="order-container">
+            <div id="confirmation-message"></div>
             <h2>Tack!</h2>
-            <h3>Dina biljetter är bokade.</h3>
+            <h3>Dina biljetter är nu bokade.</h3>
             <p>Total summa: @Model.TotalPrice SEK</p>
 
             <button class="return-button">
-                <a asp-page="./Index">Gå tillbaka till startidan</a>
+                <a asp-page="./Index">Återgå till startsidan</a>
             </button>
         </section>
     </main>
