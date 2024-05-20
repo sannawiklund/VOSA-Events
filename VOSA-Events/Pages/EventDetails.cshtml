@@ -44,7 +44,7 @@
                 <div id="event-buttons">
                     <form class="follow-form" asp-page-handler="Follow" method="post">
                         <input type="hidden" name="id" value="@Model.Event.ID">
-                        <button type="submit" class="follow-button" @(Model.IsEventFollowed(Model.Event.ID) ? "disabled" : "")>Bevaka evenemanget</button>
+                        <button type="submit" class="follow-button">@(Model.IsFollowed ? "Sluta bevaka evenemanget" : "Bevaka evenemanget")</button>
                     </form>
 
                     <a class="review-link" asp-page="./Review" asp-route-eventId="@Model.Event.ID">
