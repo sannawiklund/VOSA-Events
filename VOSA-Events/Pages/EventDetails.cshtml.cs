@@ -17,9 +17,13 @@ namespace VOSA_Events.Pages
         }
 
         public Event Event { get; set; }
+        public List<Review> Reviews { get; set; }
+        public bool ShowReviews { get; set; }
+
 
         [BindProperty]
         public int Quantity { get; set; } = 1; // Lägg till denna rad
+
 
         public void OnGet(int id)
         {
@@ -75,5 +79,24 @@ namespace VOSA_Events.Pages
 
             return existingFollow;
         }
+
+        public void LoadReviews(int id)
+        {
+            Reviews = database.Reviews.Where(r => r.EventID == id).ToList();
+        }
+        public ActionResult OnGetShowReviews(int id, bool showReviews)
+        {
+            Event = database.Events.Find(id);
+
+            ShowReviews = showReviews;
+
+            if (ShowReviews)
+            {
+                LoadReviews(id);
+            }
+
+            return Page();
+        }
+
     }
 }

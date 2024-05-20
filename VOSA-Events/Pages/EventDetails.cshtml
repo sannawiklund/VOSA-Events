@@ -47,8 +47,27 @@
                     </form>
 
                     <a class="review-link" asp-page="./Review" asp-route-eventId="@Model.Event.ID">
-                        <button type="submit" class="review-button">Lämna en recension</button>
+                        <input type="hidden" name="eventId" value="@Model.Event.ID" />
+                        <button type="submit">Lämna en recension</button>
                     </a>
+
+                    <a asp-page="./EventDetails" asp-page-handler="ShowReviews" asp-route-id="@Model.Event.ID"
+                       asp-route-showReviews="@(Model.ShowReviews ? "false" : "true")">
+                        <button type="button">@(Model.ShowReviews ? "Dölj" : "Visa") recensioner</button>
+                    </a>
+
+                    @if (Model.ShowReviews && Model.Reviews != null && Model.Reviews.Any())
+                    {
+                        <div class="show-review">
+                            <h3>Recensioner</h3>
+                            @foreach (var review in Model.Reviews)
+                            {
+                                <p>@review.Description</p>
+                                <p>Betyg: @review.Rating</p>
+                            }
+                        </div>
+                    }
+
 
                     <button class="return-button">
                         <a asp-page="./Index">Återgå till startsidan</a>
