@@ -21,7 +21,8 @@
 
                 <div id="eventContext">
                     <p class="event-description">@Model.Event.Description</p>
-                    <p class="event-info">Pris: @Model.Event.Price SEK | Datum: @Model.Event.Date.ToString("yyyy-MM-dd HH:mm") | Plats: @Model.Event.City</p>
+                    <p class="event-info-one">Adress: @Model.Event.Address | Datum: @Model.Event.Date.ToString("yyyy-MM-dd HH:mm")</p>
+                    <p class="event-info-two">Pris: @Model.Event.Price SEK | Plats: @Model.Event.City</p>
                 </div>
 
                 <div id="book-container">

@@ -115,159 +115,159 @@ namespace VOSA_Events.Data
                 database.Events.Add(new Event
                 {
                     Name = "Göteborgs Mat & Dryckesfestival",
-                    Description = "En festival som firar lokala mat- och dryckesproducenter från Västra Götaland. Adress: Götaplatsen 1, 412 56 Göteborg",
+                    Description = "En festival som firar lokala mat- och dryckesproducenter från Västra Götaland.",
+                    Address = "Götaplatsen 1, 412 56 Göteborg",
                     Price = 150,
                     City = "Göteborg",
                     TicketQuantity = 500,
                     Date = new DateTime(2024, 8, 10, 10, 0, 0),
                     AdminAccountID = 2,
-                    CategoryID = 1,
-                    ImagePath = "gbg-festival.jpg"
+                    CategoryID = 1
                 });
 
                 database.Events.Add(new Event
                 {
                     Name = "Lisebergs Julmarknad",
-                    Description = "En julmarknad med massor av lokala delikatesser och traditionell julmat. Adress: Örgrytevägen 5, 402 22 Göteborg",
+                    Description = "En julmarknad med massor av lokala delikatesser och traditionell julmat.",
+                    Address = "Örgrytevägen 5, 402 22 Göteborg",
                     Price = 100,
                     City = "Göteborg",
                     TicketQuantity = 300,
                     Date = new DateTime(2024, 11, 29, 12, 0, 0),
                     AdminAccountID = 2,
-                    CategoryID = 1,
-                    ImagePath = "christmas-festival.jpg"
+                    CategoryID = 1
 
                 });
 
                 database.Events.Add(new Event
                 {
                     Name = "Smaka på Skaraborg",
-                    Description = "En mässa som hyllar Skaraborgs unika matkultur. Adress: Stenbron, 541 45 Skövde",
+                    Description = "En mässa som hyllar Skaraborgs unika matkultur.",
+                    Address = "Stenbron, 541 45 Skövde",
                     Price = 80,
                     City = "Skövde",
                     TicketQuantity = 200,
                     Date = new DateTime(2024, 6, 15, 11, 0, 0),
                     AdminAccountID = 3,
-                    CategoryID = 2,
-                    ImagePath = "food-tasting.jpg"
+                    CategoryID = 2
                 });
 
                 database.Events.Add(new Event
                 {
                     Name = "Gourmetmässan Borås",
-                    Description = "En exklusiv mässa för finsmakare med det bästa inom gourmetmat och drycker. Adress: Sturegatan 15, 503 32 Borås",
+                    Description = "En exklusiv mässa för finsmakare med det bästa inom gourmetmat och drycker.",
+                    Address = "Sturegatan 15, 503 32 Borås",
                     Price = 200,
                     City = "Borås",
                     TicketQuantity = 150,
                     Date = new DateTime(2024, 9, 20, 9, 30, 0),
                     AdminAccountID = 4,
-                    CategoryID = 1,
-                    ImagePath = "food-festivalboras.jpg"
+                    CategoryID = 1
                 });
 
                 database.Events.Add(new Event
                 {
                     Name = "Vänersborgs Matfestival",
-                    Description = "En festival som samlar matälskare vid Vänerns strand och erbjuder ett brett utbud av mat och drycker. Adress: Strandgatan 1, 462 30 Vänersborg",
+                    Description = "En festival som samlar matälskare vid Vänerns strand och erbjuder ett brett utbud av mat och drycker.",
+                    Address = "Strandgatan 1, 462 30 Vänersborg",
                     Price = 120,
                     City = "Vänersborg",
                     TicketQuantity = 400,
                     Date = new DateTime(2024, 7, 5, 10, 30, 0),
                     AdminAccountID = 5,
-                    CategoryID = 1,
-                    ImagePath = "food-festivalvbg.jpg"
+                    CategoryID = 1
                 });
 
                 database.Events.Add(new Event
                 {
                     Name = "Vin & Delikatessmässa Uddevalla",
-                    Description = "En mässa för vinentusiaster och finsmakare med provningar av lokala delikatesser. Adress: Hamnplan, 451 55 Uddevalla",
+                    Description = "En mässa för vinentusiaster och finsmakare med provningar av lokala delikatesser.",
+                    Address = "Hamnplan, 451 55 Uddevalla",
                     Price = 75,
                     City = "Uddevalla",
                     TicketQuantity = 250,
                     Date = new DateTime(2024, 10, 12, 13, 0, 0),
                     AdminAccountID = 1,
-                    CategoryID = 1,
-                    ImagePath = "wine-deli.jpg"
+                    CategoryID = 1
                 });
 
                 database.Events.Add(new Event
                 {
                     Name = "Matfesten Trollhättan",
-                    Description = "En festlig tillställning med mat, dryck och underhållning för hela familjen. Adress: Storgatan 1, 461 30 Trollhättan",
+                    Description = "En festlig tillställning med mat, dryck och underhållning för hela familjen.",
+                    Address = "Storgatan 1, 461 30 Trollhättan",
                     Price = 90,
                     City = "Trollhättan",
                     TicketQuantity = 350,
                     Date = new DateTime(2024, 8, 25, 14, 0, 0),
                     AdminAccountID = 2,
-                    CategoryID = 1,
-                    ImagePath = "food-festivalthn.jpg"
+                    CategoryID = 1
 
                 });
 
                 database.Events.Add(new Event
                 {
                     Name = "Kulinariska Höstmarknaden Strömstad",
-                    Description = "En marknad som fylls av dofter och smaker från lokala producenter och hantverkare. Adress: Hamngatan 10, 452 30 Strömstad",
+                    Description = "En marknad som fylls av dofter och smaker från lokala producenter och hantverkare.",
+                    Address = "Hamngatan 10, 452 30 Strömstad",
                     Price = 60,
                     City = "Strömstad",
                     TicketQuantity = 180,
                     Date = new DateTime(2024, 9, 30, 11, 30, 0),
                     AdminAccountID = 3,
-                    CategoryID = 2,
-                    ImagePath = "fall-market.jpg"
+                    CategoryID = 2
                 });
 
                 database.Events.Add(new Event
                 {
                     Name = "Kafé & Chokladfestivalen Kungälv",
-                    Description = "En festival som hyllar kaffe och choklad i alla dess former. Adress: Torget, 442 30 Kungälv",
+                    Description = "En festival som hyllar kaffe och choklad i alla dess former.",
+                    Address = "Torget, 442 30 Kungälv",
                     Price = 50,
                     City = "Kungälv",
                     TicketQuantity = 200,
                     Date = new DateTime(2024, 11, 10, 10, 0, 0),
                     AdminAccountID = 4,
-                    CategoryID = 1,
-                    ImagePath = "chocolate-festival.jpg"
+                    CategoryID = 1
                 });
 
                 database.Events.Add(new Event
                 {
                     Name = "Skara Sommarbuffé",
-                    Description = "En buffé med smaker från Skara och omnejd, med lokala råvaror i fokus. Adress: Stortorget, 532 30 Skara",
+                    Description = "En buffé med smaker från Skara och omnejd, med lokala råvaror i fokus.",
+                    Address = "Stortorget, 532 30 Skara",
                     Price = 70,
                     City = "Skara",
                     TicketQuantity = 300,
                     Date = new DateTime(2024, 7, 20, 12, 30, 0),
                     AdminAccountID = 5,
-                    CategoryID = 2,
-                    ImagePath = "skara-buffe.jpg"
+                    CategoryID = 2
                 });
 
                 database.Events.Add(new Event
                 {
                     Name = "Göteborgs Ölfestival",
-                    Description = "En festival för ölälskare med ett brett urval av lokala och internationella ölsorter. Adress: Slottsmöllan, 431 37 Göteborg",
+                    Description = "En festival för ölälskare med ett brett urval av lokala och internationella ölsorter.",
+                    Address = "Slottsmöllan, 431 37 Göteborg",
                     Price = 180,
                     City = "Göteborg",
                     TicketQuantity = 400,
                     Date = new DateTime(2024, 8, 31, 15, 0, 0),
                     AdminAccountID = 1,
-                    CategoryID = 3,
-                    ImagePath = "beer-festival.jpg"
+                    CategoryID = 3
                 });
 
                 database.Events.Add(new Event
                 {
                     Name = "Borås Vin & Drinkmässa",
-                    Description = "En mässa för vin- och drinkentusiaster med provningar av exklusiva viner och innovativa drinkar. Adress: Mässans gata 20, 412 51 Göteborg",
+                    Description = "En mässa för vin- och drinkentusiaster med provningar av exklusiva viner och innovativa drinkar.",
+                    Address = "Mässans gata 20, 412 51 Göteborg",
                     Price = 200,
                     City = "Borås",
                     TicketQuantity = 400,
                     Date = new DateTime(2024, 10, 5, 17, 0, 0),
                     AdminAccountID = 4,
-                    CategoryID = 3,
-                    ImagePath = "wine-drinks.jpg"
+                    CategoryID = 3
                 });
             }
 

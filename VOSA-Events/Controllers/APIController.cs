@@ -39,10 +39,10 @@ namespace VOSA_Events.Controllers
                 Name = e.Name,
                 Price = e.Price,
                 Description = e.Description,
+                Address = e.Address,
                 City = e.City,
                 Date = e.Date,
                 TicketQuantity = e.TicketQuantity,
-                ImagePath = e.ImagePath,
                 CategoryName = e.Category.Name,
                 AdminName = e.AdminAccount.Name
             }).ToList();
@@ -75,10 +75,10 @@ namespace VOSA_Events.Controllers
                 Name = eventData.Name,
                 Price = eventData.Price,
                 Description = eventData.Description,
+                Address = eventData.Address,
                 City = eventData.City,
                 Date = eventData.Date,
                 TicketQuantity = eventData.TicketQuantity,
-                ImagePath = eventData.ImagePath,
                 Category = categoryQuery,
                 AdminAccount = adminQuery
             };
@@ -137,10 +137,10 @@ namespace VOSA_Events.Controllers
             eventToUpdate.Name = eventDto.Name;
             eventToUpdate.Price = eventDto.Price;
             eventToUpdate.Description = eventDto.Description;
+            eventToUpdate.Address = eventDto.Address;
             eventToUpdate.City = eventDto.City;
             eventToUpdate.Date = eventDto.Date;
             eventToUpdate.TicketQuantity = eventDto.TicketQuantity;
-            eventToUpdate.ImagePath = eventDto.ImagePath;
 
             try
             {
