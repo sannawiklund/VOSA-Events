@@ -47,16 +47,24 @@
                         <button type="submit" class="follow-button">@(Model.IsFollowed ? "Sluta bevaka evenemanget" : "Bevaka evenemanget")</button>
                     </form>
 
-                    <a class="review-link" asp-page="./Review" asp-route-eventId="@Model.Event.ID">
-                        <input type="hidden" name="eventId" value="@Model.Event.ID" />
-                        <button type="submit">Lämna en recension</button>
-                    </a>
+                    <button class="return-button">
+                        <a asp-page="./Index">Återgå till startsidan</a>
+                    </button>
+                </div>
 
-                    <a asp-page="./EventDetails" asp-page-handler="ShowReviews" asp-route-id="@Model.Event.ID"
-                       asp-route-showReviews="@(Model.ShowReviews ? "false" : "true")">
-                        <button type="button">@(Model.ShowReviews ? "Dölj" : "Visa") recensioner</button>
-                    </a>
+                <div id="event-buttons-bottom">
+                <a class="review-link" asp-page="./Review" asp-route-eventId="@Model.Event.ID">
+                    <input type="hidden" name="eventId" value="@Model.Event.ID" />
+                    <button type="submit" id="post-review">Lämna en recension</button>
+                </a>
 
+                <a asp-page="./EventDetails" asp-page-handler="ShowReviews" asp-route-id="@Model.Event.ID"
+                   asp-route-showReviews="@(Model.ShowReviews ? "false" : "true")">
+                    <button type="button" id="show-hide">@(Model.ShowReviews ? "Dölj" : "Visa") recensioner</button>
+                </a>
+                </div>
+
+                <div id="event-reviews">
                     @if (Model.ShowReviews && Model.Reviews != null && Model.Reviews.Any())
                     {
                         <div class="show-review">
@@ -68,12 +76,17 @@
                             }
                         </div>
                     }
-
-
-                    <button class="return-button">
-                        <a asp-page="./Index">Återgå till startsidan</a>
-                    </button>
+                    else if (Model.ShowReviews && (Model.Reviews == null || !Model.Reviews.Any()))
+                    {
+                        <p id="no-reviews">Detta evenemang har inga recensioner ännu, berätta gärna vad du tycker genom att lämna en!</p>
+                    }
                 </div>
+
+
+
+
+
+
             </section>
         </div>
     </main>

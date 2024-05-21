@@ -3,43 +3,28 @@
 @inject VOSA_Events.Data.AccessControl accessControl
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Index"]</title>
-    <meta charset="UTF-8">
-</head>
-
-<body>
-
-    @* The header is placed in layout.cshtml since it is static over all pages *@
+@* The header is placed in layout.cshtml since it is static over all pages *@
     <div id="main-container">
 
         <header class="header">
             <h1>Välkommen, <span id="loggedInUser">@accessControl.LoggedInAccountName</span>!</h1>
-            @* 		<h2><a asp-page="./Index" class="logo-link">VOSA-EVENTS</a></h2>
-            *@
+
         </header>
 
         <div class="top-container">
 
             <form method="get" class="search-form">
-                @* 		<label for="searchInput">Search for an event:</label> *@
                 <input id="searchInput" type="text" name="searchItem" placeholder="Sök efter en mässa ">
                 <input type="hidden" name="pageNumber" value="1" />
 
-                @* 		<label for="categorySelect">Välj en kategori:</label>
-                *@		<select name="category" id="categorySelect">
+                <select name="category" id="categorySelect">
                     <option>Alla kategorier</option>
                     <option>Mat & Dryck</option>
                     <option>Mat</option>
                     <option>Dryck</option>
                 </select>
 
-                @* 		<label for="dateSelect">Date:</label>
-                *@		<select id="dateSelect" name="date">
+            	<select id="dateSelect" name="date">
                     <option>Mässor som sker snart</option>
                     <option>Mässor som sker längre fram</option>
                 </select>
@@ -91,9 +76,4 @@
             </div>
 
         </footer>
-    </div>
-
-
-
-</body>
-</html>
+</div>

@@ -32,6 +32,9 @@ p, .details-link, td {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+a {
+    text-decoration: none;
+}
 /*---------------------------------------------------------------------------------------*/
 
 /*Statisk navigationbar*/
@@ -233,54 +236,48 @@ button.follow-button {
     background-color: rgb(71 110 111);
 }
 
-#event-buttons {
+div#event-buttons, div#event-buttons-bottom {
     display: flex;
     flex-direction: row;
     justify-content: center;
     padding-top: 10px;
 }
 
-#eventContext {
+    #event-buttons-bottom {
+        padding: 5px;
+    }
+
+    /* Styla formuläret för kvantitet */
+    select.quantity-select {
+        font-size: 15px;
+        margin-left: 1em;
+        padding: 3px;
+        margin-top: 4px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: 200;
+        border-radius: 5px;
+    }
+
+#no-reviews {
+    font-size: 14px;
 }
-/* Styla sektionstiteln */
-.section-title {
+
+button#post-review {
+    background-color: rgb(39 133 135);
 }
 
-/* Styla formuläret för kvantitet */
-select.quantity-select {
-    font-size: 15px;
-    margin-left: 1em;
-    padding: 3px;
-    margin-top: 4px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: 200;
-    border-radius: 5px;
-}
-
-
+button#post-review, button#show-hide {
+    margin: 4px;
 }
 
 
 
-/* Styla urvalsfältet för kvantitet */
-.quantity-select {
-
-}
 
 /* Styla beställningsknappen */
-.order-button {
-
+button.order-button {
+    background-color: darkgoldenrod;
 }
 
-/* Styla följknappen */
-.follow-button {
-
-}
-
-/* Styla knappen för att lämna recension */
-.review-button {
-
-}
 
 /* Styla knappen för att återvända till evenemang */
 .return-button {
@@ -298,19 +295,49 @@ select.quantity-select {
     cursor: not-allowed; /* Ändra pekaren till en "not-allowed"-pekare när knappen är klickad */
 }
 
-
-
 /*------------------------------------------------*/
 
 
 /*ReviewPage*/
+#review-page {
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.73);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2em;
+    display: grid;
+    margin: 0 auto;
+    max-width: 600px;
+    text-align: center;
+}
 
+div.alert.alert-info {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+}
+
+textarea.review-textarea {
+    padding: 1em;
+}
+
+.rating-question {
+}
+
+div.rating-options {
+    display: flex;
+    justify-content: center;
+}
 
 
 
 /*------------------------------------------------*/
 
 /*MyEventsPage*/
+
+
 
 
 
@@ -332,22 +359,6 @@ select.quantity-select {
     max-width: 600px;
 }
 
-.cart-title {
-}
-
-
-.shopping-cart {
-}
-
-.cart-item {
-}
-
-.cart-item-image {
-}
-
-.cart-total {
-}
-
 .cart-buttons {
     display: flex;
     justify-content: center;
@@ -366,7 +377,6 @@ form.return-to-start-form {
 .clear-cart-button {
     background-color: darkgrey;
 }
-
 
 /*------------------------------------------------*/
 
