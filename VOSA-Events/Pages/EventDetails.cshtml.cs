@@ -20,6 +20,8 @@ namespace VOSA_Events.Pages
         public List<Review> Reviews { get; set; }
         public bool ShowReviews { get; set; }
 
+        public bool IsFollowed { get; set; }
+
 
         [BindProperty]
         public int Quantity { get; set; } = 1; // Lägg till denna rad
@@ -28,7 +30,9 @@ namespace VOSA_Events.Pages
         public void OnGet(int id)
         {
             Event = database.Events.Find(id);
+            IsFollowed = IsEventFollowed(id); // Sätt IsFollowed här
         }
+
 
         public IActionResult OnPostOrder(int quantity, int id)
         {
@@ -59,16 +63,26 @@ namespace VOSA_Events.Pages
         {
             var loggedInUserId = accessControl.LoggedInAccountID;
 
-            var follows = new Follow
-            {
-                EventID = id,
-                AccountID = loggedInUserId,
-            };
+            var existingFollow = database.Follows.SingleOrDefault(f => f.AccountID == loggedInUserId && f.EventID == id);
 
-            database.Follows.Add(follows);
+            if (existingFollow == null)
+            {
+                var follows = new Follow
+                {
+                    EventID = id,
+                    AccountID = loggedInUserId,
+                };
+
+                database.Follows.Add(follows);
+            }
+            else
+            {
+                database.Follows.Remove(existingFollow);
+            }
+
             database.SaveChanges();
 
-            return RedirectToPage("/Index");
+            return RedirectToPage(new { id }); // Behåll på samma sida och ladda om den
         }
 
         public bool IsEventFollowed(int eventId)

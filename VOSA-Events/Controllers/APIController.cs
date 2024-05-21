@@ -1,14 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Linq;
 using VOSA_Events.Data;
 using VOSA_Events.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace VOSA_Events.Controllers
 {
@@ -154,7 +147,74 @@ namespace VOSA_Events.Controllers
             return NoContent();
         }
 
-			
+        [HttpPatch("PatchEvent/{id}")]
+        public async Task<IActionResult> PatchEvent(int id, [FromBody] EventDto eventDto)
+        {
+            if (id != eventDto.ID)
+            {
+                return BadRequest();
+            }
+
+            var existingEvent = await _database.Events.FindAsync(id);
+            if (existingEvent == null)
+            {
+                return NotFound();
+            }
+
+            /*Ser fult ut och kunde vara mer dry - men funkar för ändamålet.
+            Att sätta att saker inte får heta "string" eller vara 0 känns som en dålig lösning i stort,
+            men det får vara så i detta lilla program.
+            Har inte löst hur det skulle funka med datumhantering - skulle antagligen varit smidigast att
+            lägga det i en egen endpoint.
+            /Anna */
+            if (eventDto.Name != null && eventDto.Name != "string")
+            {
+                existingEvent.Name = eventDto.Name;
+            }
+
+            if (eventDto.Price != null && eventDto.Price != 0)
+            {
+                existingEvent.Price = eventDto.Price;
+            }
+
+            if (eventDto.Description != null && eventDto.Description != "string")
+            {
+                existingEvent.Description = eventDto.Description;
+            }
+
+            if (eventDto.Address != null && eventDto.Address != "string")
+            {
+                existingEvent.Address = eventDto.Address;
+            }
+
+            if (eventDto.City != null && eventDto.City != "string")
+            {
+                existingEvent.City = eventDto.City;
+            }
+
+            if (eventDto.Date != null)
+            {
+                existingEvent.Date = eventDto.Date;
+            }
+
+            if (eventDto.TicketQuantity != null && eventDto.TicketQuantity != 0)
+            {
+                existingEvent.TicketQuantity = eventDto.TicketQuantity;
+            }
+
+          
+            try
+            {
+                await _database.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
+
+            return NoContent();
+        }
+    
         [HttpDelete("DeleteEvent/{id}")]
         public ActionResult DeleteEvent(int id)
         {
@@ -171,5 +231,4 @@ namespace VOSA_Events.Controllers
             return Ok();
         }
     }
-
 }
