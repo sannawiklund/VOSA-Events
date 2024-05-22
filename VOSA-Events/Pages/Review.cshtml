@@ -4,45 +4,59 @@
 @{
     ViewData["Title"] = "Review Page";
 }
-@if (Model.ShowUpdateMessage)
-{
-    <div class="alert alert-info" role="alert">
-        Din befintliga recension kommer att uppdateras.
+
+<body>
+
+    <div id="review-page">
+
+        <div class="leave-review-section">
+
+            @if (Model.ShowUpdateMessage)
+            {
+                <div class="alert alert-info" role="alert">
+                    Du har redan l&auml;mnat en recension p&aring; detta evenemang.
+                    <br />
+                    Din befintliga recension kommer att uppdateras.
+                </div>
+            }
+
+            <h2 class="review-heading">L&auml;mna din recension h&auml;r:</h2>
+            <form method="post" class="review-form">
+                <div class="form-group">
+                    <label for="reviewText" class="review-label">Vad tyckte du om evenemanget?</label>
+                    <textarea id="reviewText" name="reviewText" rows="4" cols="50" maxlength="300" class="review-textarea"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <p class="rating-question">Hur m&aring;nga stj&auml;rnor f&aring;r detta evenemang?</p>
+                    <div class="rating-options">
+                        <label for="rating1" class="rating-label">
+                            <input type="radio" id="rating1" name="rating" value="1" class="rating-input" <p>1</p> </>
+                        </label>
+                        <label for="rating2" class="rating-label">
+                            <input type="radio" id="rating2" name="rating" value="2" class="rating-input" <p>2</p> </>
+                        </label>
+                        <label for="rating3" class="rating-label">
+                            <input type="radio" id="rating3" name="rating" value="3" class="rating-input" <p>3</p> </>
+                        </label>
+                        <label for="rating4" class="rating-label">
+                            <input type="radio" id="rating4" name="rating" value="4" class="rating-input" <p>4</p> </>
+                        </label>
+                        <label for="rating5" class="rating-label">
+                            <input type="radio" id="rating5" name="rating" value="5" class="rating-input" <p>5</p> </>
+                        </label>
+                    </div>
+                </div>
+
+            <div></div>
+                <button type="submit" class="review-button">Publicera recension</button>
+
+            </form>
+
+            <form class="return-to-start-form" asp-page="/Index" method="get">
+                <button type="submit" class="return-button">&Aring;terg&aring; till startsidan</button>
+            </form>
+        </div>
+
     </div>
-}
-
-<div id="review-page">
-
-    <div class="leave-review-section">
-
-        <h2>Lämna din recension här:</h2>
-        <form method="post">
-            <div>
-                <label for="reviewText">Vad tyckte du om evenemanget?:</label>
-                <textarea id="reviewText" name="reviewText" rows="4" cols="50" maxlength="300"></textarea>
-            </div>
-
-            <div>
-                <p>Hur många stjärnor får detta evenemang?:</p>
-                <label for="rating1">
-                    <input type="radio" id="rating1" name="rating" value="1">
-                </label>
-                <label for="rating2">
-                    <input type="radio" id="rating2" name="rating" value="2">
-                </label>
-                <label for="rating3">
-                    <input type="radio" id="rating3" name="rating" value="3">
-                </label>
-                <label for="rating4">
-                    <input type="radio" id="rating4" name="rating" value="4">
-                </label>
-                <label for="rating5">
-                    <input type="radio" id="rating5" name="rating" value="5">
-                </label>
-            </div>
-
-            <button type="submit" class="review-button">Publicera recension</button>
-        </form>
-    </div>
-
-</div>
+</body>

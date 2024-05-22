@@ -2,3 +2,47 @@
 @model VOSA_Events.Pages.MyEventsModel
 @{
 }
+
+<body>
+    @* The header is placed in layout.cshtml since it is static over all pages *@
+    <div id="myEvents-container" class="container">
+
+        @if ((Model.BookedEvents != null && Model.BookedEvents.Any()) || (Model.FollowedEvents != null && Model.FollowedEvents.Any()))
+        {
+            <div id="section-one">
+            <h2 class="section-title">Dina bokade Mässor</h2>
+            @foreach (var booking in Model.BookedEvents)
+            {
+                <ul class="booked-events-list">
+                    <li class="event-item">@booking.Event.Name</li>
+                    <p class="event-details">Antal bokade biljetter: @booking.Quantity</p>
+                </ul>
+                    <hr>
+            }
+            </div>
+
+            <div id="section-two"> 
+            <h2 class="section-title">Dina bevakade Mässor</h2>
+            @foreach (var follows in Model.FollowedEvents)
+            {
+                <ul class="followed-events-list">
+                    <li class="event-item">@follows.Name</li>
+                </ul>
+                <form method="post" asp-page-handler="UnfollowEvent" asp-route-eventId="@follows.ID" class="unfollow-form">
+                    <button type="submit" class="unfollow-button">Sluta följ</button>
+                </form>
+                    <hr>
+            }
+            </div>
+        }
+        else
+        {
+            <p class="no-events-message">Du har inga bokade eller bevakade mässor!</p>
+        }
+
+        <form class="return-to-start-form-event" asp-page="/Index" method="get">
+            <button type="submit" class="return-to-start-button-event">Återgå till startsidan</button>
+        </form>
+    </div>
+
+</body>

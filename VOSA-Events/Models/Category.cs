@@ -6,4 +6,9 @@
         public string Name { get; set; }
         public virtual List<Event> Events { get; set; }
     }
+
+    public class CategoryDto
+    {
+        public string Name { get; set; }
+    }
 }

@@ -1,16 +1,24 @@
-/* Layout f�r alla sidor */
+﻿/* Layout f�r alla sidor */
 body {
     background-color: #ffffff;
     color: #333333;
     overflow-x: hidden;
+    background-image: url(https://cdn.vectorstock.com/i/500p/59/07/black-and-white-geometric-pattern-vector-3645907.jpg);
 }
 
 h1 {
+    font-family: "Josefin Sans", sans-serif;
     text-align: center;
+    color: darkgoldenrod;
+    font-size: 45px;
+}
+
+h2 {
+    font-size: 20px;
 }
 
 h1, h2, h3, input#searchInput, select#categorySelect, select#dateSelect, select#account-id, label {
-    font-family: "Raleway", sans-serif;
+    font-family: "Josefin Sans", sans-serif;
     font-optical-sizing: auto;
     font-weight: <weight>;
     font-style: normal;
@@ -20,22 +28,27 @@ select#account-id, label {
     font-size: 15px;
 }
 
-p, .details-link {
+p, .details-link, td {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+a {
+    text-decoration: none;
+}
 /*---------------------------------------------------------------------------------------*/
 
 /*Statisk navigationbar*/
 
 .topnav {
-    background-image: url(https://cdn.vectorstock.com/i/500p/59/07/black-and-white-geometric-pattern-vector-3645907.jpg);
-    background-color: white;
+    border-radius: 20px;
     overflow: hidden;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     padding: 1em;
+    padding-top: 10px;
+    min-width: 678px;
 }
 
     .topnav a {
@@ -54,9 +67,11 @@ p, .details-link {
         display: none;
     }
 
-#home {
-    font-size: 50px;
-    color: gold;
+a#home.active {
+    font-size: 37px;
+    color: goldenrod;
+    padding: 0;
+    padding-left: 5px;
 }
 
 select#account-id, label {
@@ -68,31 +83,37 @@ select#account-id, label {
     border-radius: 5px;
 }
 
-#vosaEventTitle {
+/*#vosaEventTitle {
     margin: 0px;
-    margin-top: 6px;
-    padding-left: 2em;
-    font-size: 4.5rem;
-    color: gold;
-    font-family: auto;
-    text-shadow: 1px 1px 2px #7a7a7a;
-}
+    padding: 10px;
+    margin-top: 5px;
+    color: goldenrod;
+    font-family: "Josefin Sans", sans-serif;
+
+}*/
 
 #loginForm {
     font-weight: 400;
 }
 
 #navBkg {
-    background-color: #607d8b99;
+    /* From https://css.glass */
+    background: rgba(71, 110, 111, 0.73);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(71, 110, 111, 0.3);
+    padding: 5px;
     border-radius: 20px;
     display: flex;
 }
 
-#navBkg a, #loginForm {
-    color: white;
-    font-weight: 300;
-    margin: 5px;
-}
+    #navBkg a, #loginForm {
+        color: white;
+        font-weight: 400;
+        margin: 5px;
+    }
 
 /*---------------------------------------------------------------------------------------*/
 /*IndexPage/StartPage*/
@@ -103,6 +124,20 @@ select#account-id, label {
 .top-container {
     display: grid;
     justify-content: center;
+}
+
+#main-container {
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.73);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 2em;
+    max-width: 80%;
+    margin: auto;
+    max-height: auto;
 }
 
 .search-form {
@@ -121,16 +156,16 @@ input#searchInput, select#categorySelect, select#dateSelect {
     grid-template-rows: repeat(2, 1fr);
     gap: 20px;
     justify-content: center;
-    padding: 1em;
+    padding: 1.5em;
 }
 
 .event {
     padding: 20px;
-    background-color: #f0f0f0;
+    background-color: white;
 }
 
 .details-link {
-    color: cadetblue;
+    color: #476e6f;
     text-decoration: none;
 }
 
@@ -144,13 +179,12 @@ input#searchInput, select#categorySelect, select#dateSelect {
 #submit,
 .previous-button,
 .next-button, button {
-    background-color: gold;
+    background-color: goldenrod;
     color: #ffffff;
     border: none;
     padding: 6px 15px;
     font-weight: 400;
     cursor: pointer;
-    transition: background-color 0.3s;
     border-radius: 5px;
     text-decoration: none;
 }
@@ -163,21 +197,206 @@ input#searchInput, select#categorySelect, select#dateSelect {
 
 /*EventDetailsPage*/
 
+#eventDetails-container {
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.73);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2em;
+    max-width: 45%;
+    margin: auto;
+    max-height: auto;
+    text-align: center;
+}
+
+.event-title {
+    font-size: 25px;
+}
+
+.show-review {
 
 
+}
+
+p.event-description {
+    font-weight: 400;
+    font-size: 17px;
+    margin-right: 2em;
+    margin-left: 2em;
+}
+
+#book-container {
+    display: flex;
+    justify-content: center;
+}
+
+button.order-button, button.follow-button, button.review-button, button.return-button {
+    margin: 5px;
+}
+
+button.follow-button {
+    background-color: rgb(71 110 111);
+}
+
+div#event-buttons, div#event-buttons-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+    #event-buttons-bottom {
+        padding: 5px;
+    }
+
+    /* Styla formuläret för kvantitet */
+    select.quantity-select {
+        font-size: 15px;
+        margin-left: 1em;
+        padding: 3px;
+        margin-top: 4px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: 200;
+        border-radius: 5px;
+    }
+
+#no-reviews {
+    font-size: 14px;
+}
+
+button#post-review {
+    background-color: rgb(39 133 135);
+}
+
+button#post-review, button#show-hide {
+    margin: 4px;
+}
+
+
+/* Styla beställningsknappen */
+button.order-button {
+    background-color: darkgoldenrod;
+}
+
+
+/* Styla knappen för att återvända till evenemang */
+.return-button {
+    background-color: grey;
+}
+
+    .return-button a {
+        text-decoration: none;
+        color: white;
+    }
+
+
+.follow-button.followed {
+    background-color: grey; /* Ändra färgen till grå när knappen är klickad */
+    cursor: not-allowed; /* Ändra pekaren till en "not-allowed"-pekare när knappen är klickad */
+}
 
 /*------------------------------------------------*/
 
 
 /*ReviewPage*/
+#review-page {
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.73);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2em;
+    display: grid;
+    margin: 0 auto;
+    max-width: 600px;
+    text-align: center;
+}
 
+div.alert.alert-info {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+}
+
+textarea.review-textarea {
+    padding: 1em;
+}
+
+.rating-question {
+}
+
+div.rating-options {
+    display: flex;
+    justify-content: center;
+}
 
 
 
 /*------------------------------------------------*/
 
 /*MyEventsPage*/
+#myEvents-container {
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.73);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2em;
+    display: grid;
+    margin: 0 auto;
+    max-width: 800px;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+}
 
+#section-one {
+    grid-column: 1;
+    border: solid;
+    border-radius: 5px;
+    padding: 1em;
+    border-width: thin;
+    background-color: white;
+}
+
+#section-two {
+    grid-column: 2;
+    border: solid;
+    border-radius: 5px;
+    padding: 1em;
+    border-width: thin;
+    background-color: white;
+}
+
+/* Lista över bevakade mässor */
+.followed-events-list, .booked-events-list {
+    list-style-type: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-right: 2.5em;
+}
+
+form.return-to-start-form-event, button.return-to-start-button-event {
+    display: flex;
+    justify-content: center;
+}
+/* Knapp för att sluta följa ett evenemang */
+.unfollow-button {
+    background-color: darkslategrey
+}
+
+/* Meddelande när det inte finns några bokade eller bevakade mässor */
+.no-events-message {
+    /* Ditt CSS här */
+}
 
 
 
@@ -185,27 +404,17 @@ input#searchInput, select#categorySelect, select#dateSelect {
 
 /*CartPage*/
 #shopping-cart-page {
-    background-color: #f0f0f0;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.73);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 2em;
     display: grid;
     margin: 0 auto;
     max-width: 600px;
-}
-
-.cart-title {
-}
-
-
-.shopping-cart {
-}
-
-.cart-item {
-}
-
-.cart-item-image {
-}
-
-.cart-total {
 }
 
 .cart-buttons {
@@ -220,19 +429,26 @@ form.return-to-start-form {
 }
 
 .place-order-button {
-    background-color: steelblue;
+    background-color: rgb(71 110 111);
 }
 
 .clear-cart-button {
     background-color: darkgrey;
 }
 
-
 /*------------------------------------------------*/
 
 /*OrderConfirmationPage*/
-
-
-
-
-/*------------------------------------------------*/
+section.order-container {
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.73);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2em;
+    display: grid;
+    margin: 0 auto;
+    max-width: 600px;
+}

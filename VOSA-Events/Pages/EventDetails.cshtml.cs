@@ -1,84 +1,114 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using VOSA_Events.Data;
 using VOSA_Events.Models;
 
 namespace VOSA_Events.Pages
 {
-	public class EventDetailsModel : PageModel
-	{
-		//Databas
-		private readonly AppDbContext database;
-		private readonly AccessControl accessControl;
+    public class EventDetailsModel : PageModel
+    {
+        private readonly AppDbContext database;
+        private readonly AccessControl accessControl;
 
-		public EventDetailsModel(AppDbContext database, AccessControl accessControl)
-		{
-			this.database = database;
-			this.accessControl = accessControl;
-		}
+        public EventDetailsModel(AppDbContext database, AccessControl accessControl)
+        {
+            this.database = database;
+            this.accessControl = accessControl;
+        }
 
-		//Variabler
-		public Event Event { get; set; }
+        public Event Event { get; set; }
+        public List<Review> Reviews { get; set; }
+        public bool ShowReviews { get; set; }
 
-		//Metoder
-		public void OnGet(int id)
-		{
-			Event = database.Events.Find(id);
-		}
-		public IActionResult OnPostOrder(int quantity, int id )
-		{
+        public bool IsFollowed { get; set; }
 
-			var loggedInUserId = accessControl.LoggedInAccountID;
+        [BindProperty]
+        public int Quantity { get; set; } = 1;
 
-			var existingEvent = database.Bookings.SingleOrDefault(b => b.AccountID == loggedInUserId && b.EventID == id);
 
-			if (existingEvent != null)
-			{
-				existingEvent.Quantity += quantity;
-			}
+        public void OnGet(int id)
+        {
+            Event = database.Events.Find(id);
+            IsFollowed = IsEventFollowed(id);
+        }
 
-			else
-			{
-				var bookings = new Booking
-				{
-					EventID = id,
-					AccountID = loggedInUserId,
-					Quantity = quantity
-				};
+        public IActionResult OnPostOrder(int quantity, int id)
+        {
+            var loggedInUserId = accessControl.LoggedInAccountID;
+            var existingEvent = database.Bookings.SingleOrDefault(b => b.AccountID == loggedInUserId && b.EventID == id);
 
-				database.Bookings.Add(bookings);
-			}
+            if (existingEvent != null)
+            {
+                existingEvent.Quantity += quantity;
+            }
+            else
+            {
+                var booking = new Booking
+                {
+                    EventID = id,
+                    AccountID = loggedInUserId,
+                    Quantity = quantity
+                };
 
-			database.SaveChanges();
+                database.Bookings.Add(booking);
+            }
 
-			return RedirectToPage("/Index");
-		}
+            database.SaveChanges();
+            return RedirectToPage("/Index");
+        }
 
-		public IActionResult OnPostFollow(int id)
-		{
-			var loggedInUserId = accessControl.LoggedInAccountID;
+        public IActionResult OnPostFollow(int id)
+        {
+            var loggedInUserId = accessControl.LoggedInAccountID;
 
-				var follows = new Follow
-				{
-					EventID = id,
-					AccountID = loggedInUserId,
-				};
+            var existingFollow = database.Follows.SingleOrDefault(f => f.AccountID == loggedInUserId && f.EventID == id);
 
-				database.Follows.Add(follows);
-				database.SaveChanges();
+            if (existingFollow == null)
+            {
+                var follows = new Follow
+                {
+                    EventID = id,
+                    AccountID = loggedInUserId,
+                };
 
-			return RedirectToPage("/Index");
-		}
+                database.Follows.Add(follows);
+            }
+            else
+            {
+                database.Follows.Remove(existingFollow);
+            }
 
-		public bool IsEventFollowed(int eventId)
-		{
-			var loggedInUserId = accessControl.LoggedInAccountID;
+            database.SaveChanges();
 
-			var existingFollow = database.Follows.Any(f => f.AccountID == loggedInUserId && f.EventID == eventId);
+            return RedirectToPage(new { id });
+        }
 
-			return existingFollow;
-		}
+        public bool IsEventFollowed(int eventId)
+        {
+            var loggedInUserId = accessControl.LoggedInAccountID;
 
-	}
+            var existingFollow = database.Follows.Any(f => f.AccountID == loggedInUserId && f.EventID == eventId);
+
+            return existingFollow;
+        }
+
+        public void LoadReviews(int id)
+        {
+            Reviews = database.Reviews.Where(r => r.EventID == id).ToList();
+        }
+        public ActionResult OnGetShowReviews(int id, bool showReviews)
+        {
+            Event = database.Events.Find(id);
+
+            ShowReviews = showReviews;
+
+            if (ShowReviews)
+            {
+                LoadReviews(id);
+            }
+
+            return Page();
+        }
+
+    }
 }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using VOSA_Events.Models;
 
 namespace VOSA_Events.Data

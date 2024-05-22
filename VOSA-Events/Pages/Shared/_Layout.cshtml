@@ -1,7 +1,7 @@
 ﻿@using VOSA_Events.Pages.Shared.Components.LoginMenu;
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +12,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html" charset="ISO-8859-1" />
 
 
     <script src="~/js/site.js" asp-append-version="true" defer></script>
@@ -22,30 +26,26 @@
     <header>
         <div class="topnav" id="myTopnav">
 
-                <a href="/index" class="active" id="home"><i class="fa fa-home"></i></a>
-
             <div id="navBkg">
+                <a href="/index" class="active" id="home"><i class="fa fa-home"></i></a>
                 <a href="/admin">Admin</a>
-                <a href="/cart">Cart</a>
-                <a href="/review">Reviews</a>
-                <a href="/myEvents">My Events</a>
+                <a href="/cart">Varukorg</a>
+                <a href="/myEvents">Mina sidor</a>
 
 
-            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                <i class="fa fa-bars"></i>
-            </a>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
 
-            <div id="loginForm">
-                <environment names="Development">
-                    @await Component.InvokeAsync(nameof(FakeLoginMenu))
-                </environment>
+                <div id="loginForm">
+                    <environment names="Development">
+                        @await Component.InvokeAsync(nameof(FakeLoginMenu))
+                    </environment>
+                </div>
+
             </div>
-            </div>
-
-            <h1 id="vosaEventTitle">VOSA EVENTS</h1>
 
         </div>
-
     </header>
     <main>
         @RenderBody()

@@ -1,61 +1,81 @@
 ﻿@page
 @model VOSA_Events.Pages.EventDetailsModel
 @{
+    ViewData["Title"] = "Event Details";
 }
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Event Details</title>
-</head> 
+
 <body>
-	<h2><a asp-page="./Index">VOSA-EVENTS</a></h2>
-	<main>
-		<h2>Event Details</h2>
-		<section>
-				<h3>@Model.Event.Name</h3>
-				<p>@Model.Event.Description</p>
-				<p>Price: @Model.Event.Price SEK</p>
-				<p>@Model.Event.Date.ToString("yyyy-MM-dd HH:mm")</p>
-				<p>@Model.Event.City</p>
+    <main>
+        <div id="eventDetails-container">
+            <section class="event-details-section">
+                <h3 class="event-title">@Model.Event.Name</h3>
 
-				<form method="post">
-				<select name="quantity">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
-				</select>
+                <hr></hr>
 
-				</form>
+                <div id="eventContext">
+                    <p class="event-description">@Model.Event.Description</p>
+                    <p class="event-info-one">Adress: @Model.Event.Address | Datum: @Model.Event.Date.ToString("yyyy-MM-dd HH:mm")</p>
+                    <p class="event-info-two">Pris: @Model.Event.Price SEK | Plats: @Model.Event.City</p>
+                </div>
 
-				<form asp-page-handler="Order" method="post">
-					<input type="hidden" name="id" value="@Model.Event.ID">
-					<button type="submit">Boka</button>
-				</form>
+                <div id="book-container">
+                    <form class="order-form" asp-page-handler="Order" method="post">
+                        <input type="hidden" name="id" value="@Model.Event.ID">
+                        <select name="quantity" class="quantity-select" asp-for="Quantity">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                        <button type="submit" class="order-button">Boka biljett</button>
+                    </form>
+                </div>
 
-				<form asp-page-handler="Follow" method="post">
-					<input type="hidden" name="id" value="@Model.Event.ID">
-				<button type="submit" @(Model.IsEventFollowed(Model.Event.ID) ? "disabled" : "")>Bevaka</button>
-				</form>
+                <hr></hr>
 
-			@* Vet inte hur vi ska implementera att man ser reviews ännu.
-				<a asp-page="./EventDetails" class="event-link">
-				<input type="button" name="review-id" class="event-id" />
-				<button type="submit" class="review-button">See reviews</button>
-			</a> *@
+                <div id="event-buttons">
+                    <form class="follow-form" asp-page-handler="Follow" method="post">
+                        <input type="hidden" name="id" value="@Model.Event.ID">
+                        <button type="submit" class="follow-button">@(Model.IsFollowed ? "Sluta bevaka evenemanget" : "Bevaka evenemanget")</button>
+                    </form>
 
-			<a asp-page="./Review" asp-route-eventId="@Model.Event.ID">
-				<input type="hidden" name="eventId" value="@Model.Event.ID" />
-				<button type="submit">Lämna en recension</button>
-			</a>
+                    <button class="return-button">
+                        <a asp-page="./Index">Återgå till startsidan</a>
+                    </button>
+                </div>
 
-			<button class="return-button">
-					<a asp-page="./Index">Return to events</a>
-				</button>
-		</section>
-	</main>
+                <div id="event-buttons-bottom">
+                <a class="review-link" asp-page="./Review" asp-route-eventId="@Model.Event.ID">
+                    <input type="hidden" name="eventId" value="@Model.Event.ID" />
+                    <button type="submit" id="post-review">Lämna en recension</button>
+                </a>
+
+                <a asp-page="./EventDetails" asp-page-handler="ShowReviews" asp-route-id="@Model.Event.ID"
+                   asp-route-showReviews="@(Model.ShowReviews ? "false" : "true")">
+                    <button type="button" id="show-hide">@(Model.ShowReviews ? "Dölj" : "Visa") recensioner</button>
+                </a>
+                </div>
+
+                <div id="event-reviews">
+                    @if (Model.ShowReviews && Model.Reviews != null && Model.Reviews.Any())
+                    {
+                        <div class="show-review">
+                            <h3>Recensioner</h3>
+                            @foreach (var review in Model.Reviews)
+                            {
+                                <p>@review.Description</p>
+                                <p>Betyg: @review.Rating / 5</p>
+                            }
+                        </div>
+                    }
+                    else if (Model.ShowReviews && (Model.Reviews == null || !Model.Reviews.Any()))
+                    {
+                        <p id="no-reviews">Detta evenemang har inga recensioner ännu, berätta gärna vad du tycker genom att lämna en!</p>
+                    }
+                </div>
+
+            </section>
+        </div>
+    </main>
 </body>
-</html>

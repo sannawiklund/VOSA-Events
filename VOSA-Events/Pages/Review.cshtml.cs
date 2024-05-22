@@ -9,7 +9,6 @@ namespace VOSA_Events.Pages
 {
     public class ReviewModel : PageModel
     {
-        //Databas
         private readonly AppDbContext database;
 
         public ReviewModel(AppDbContext database)
@@ -17,14 +16,12 @@ namespace VOSA_Events.Pages
             this.database = database;
         }
 
-        //Variabler
         public Event Event { get; set; }
         public int EventID { get; set; }
         public string ReveiwText { get; set; }
         public int Rating { get; set; }
         public bool ShowUpdateMessage { get; set; }
 
-        //Metoder
 
         private int GetUserId()
         {
@@ -59,8 +56,8 @@ namespace VOSA_Events.Pages
         }
 
         public void OnGet(int eventId)
-		    {
-			   Event = database.Events.Find(eventId);
+		{
+			Event = database.Events.Find(eventId);
 
             var accountId = GetUserId();
 
@@ -77,23 +74,22 @@ namespace VOSA_Events.Pages
             var existingReview = GetReview(eventId, accountId);
 
             if (existingReview != null)
-{
-    existingReview.Description = reviewText;
-    existingReview.Rating = rating;
-}
-else
-{
-    // Annars skapas en ny review baserat på användarens input
-    var review = new Review()
-    {
-        AccountID = accountId,
-        EventID = eventId,
-        Description = reviewText,
-        Rating = rating
-    };
+            {
+                existingReview.Description = reviewText;
+                existingReview.Rating = rating;
+            }
+            else
+            {
+                var review = new Review()
+                {
+                    AccountID = accountId,
+                    EventID = eventId,
+                    Description = reviewText,
+                    Rating = rating
+                };
 
-    database.Reviews.Add(review);
-}
+                database.Reviews.Add(review);
+            }
 
             database.SaveChanges();
 

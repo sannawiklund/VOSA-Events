@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
-using VOSA_Events.Data;
-using VOSA_Events.Models;
+﻿using System.Security.Claims;
 
 namespace VOSA_Events.Data
 {
