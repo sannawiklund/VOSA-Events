@@ -350,54 +350,51 @@ div.rating-options {
     padding: 2em;
     display: grid;
     margin: 0 auto;
-    max-width: 800px;
+    max-width: 600px;
     text-align: center;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto;
-    grid-column-gap: 15px;
-    grid-row-gap: 15px;
-}
-
-#section-one {
-    grid-column: 1;
-    border: solid;
-    border-radius: 5px;
-    padding: 1em;
-    border-width: thin;
-    background-color: white;
 }
 
 #section-two {
-    grid-column: 2;
     border: solid;
     border-radius: 5px;
     padding: 1em;
     border-width: thin;
     background-color: white;
+    max-width: 600px;
+    margin: 0 auto;
 }
+
 
 /* Lista över bevakade mässor */
 .followed-events-list, .booked-events-list {
     list-style-type: none;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding-right: 2.5em;
+    margin: 0;
 }
 
 form.return-to-start-form-event, button.return-to-start-button-event {
     display: flex;
     justify-content: center;
+    padding: 10px;
 }
 /* Knapp för att sluta följa ett evenemang */
 .unfollow-button {
     background-color: darkslategrey
 }
 
-/* Meddelande när det inte finns några bokade eller bevakade mässor */
-.no-events-message {
-    /* Ditt CSS här */
+div#list-item-box {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    justify-content: flex-end;
 }
 
+
+li.event-item {
+    font-weight: 400;
+    font-size: 17px;
+}
 
 
 /*------------------------------------------------*/
