@@ -22,17 +22,15 @@ namespace VOSA_Events.Pages
 
         public bool IsFollowed { get; set; }
 
-
         [BindProperty]
-        public int Quantity { get; set; } = 1; // Lägg till denna rad
+        public int Quantity { get; set; } = 1;
 
 
         public void OnGet(int id)
         {
             Event = database.Events.Find(id);
-            IsFollowed = IsEventFollowed(id); // Sätt IsFollowed här
+            IsFollowed = IsEventFollowed(id);
         }
-
 
         public IActionResult OnPostOrder(int quantity, int id)
         {
@@ -82,7 +80,7 @@ namespace VOSA_Events.Pages
 
             database.SaveChanges();
 
-            return RedirectToPage(new { id }); // Behåll på samma sida och ladda om den
+            return RedirectToPage(new { id });
         }
 
         public bool IsEventFollowed(int eventId)

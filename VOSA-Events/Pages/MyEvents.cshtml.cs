@@ -21,10 +21,10 @@ namespace VOSA_Events.Pages
         public List<Booking> BookedEvents { get; set; }
         public List<Event> FollowedEvents { get; set; }
 
+
         public void OnGet()
         {
             var loggedInUserId = accessControl.LoggedInAccountID;
-
 
             BookedEvents = database.Bookings
                                       .Where(b => b.AccountID == loggedInUserId)

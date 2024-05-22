@@ -1,6 +1,4 @@
-﻿using System.Data;
-using System.Xml.Linq;
-using VOSA_Events.Models;
+﻿using VOSA_Events.Models;
 
 namespace VOSA_Events.Data
 {

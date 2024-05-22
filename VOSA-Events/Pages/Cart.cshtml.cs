@@ -8,22 +8,22 @@ namespace VOSA_Events.Pages
 {
     public class CartModel : PageModel
     {
-        //Variabler
         public List<Booking> Bookings { get; set; }
         public Event Events { get; set; }
         public int CountItems { get; set; }
         public double TotalPrice { get; set; }
         public string emptyCart { get; set; }
 
-        //Databas
+
         private readonly AppDbContext database;
         private readonly AccessControl accessControl;
 
-        public CartModel(AppDbContext database, AccessControl accessControl) //F�r att f� �tkomst till databasen och accesskontrollen i detta scope
+        public CartModel(AppDbContext database, AccessControl accessControl)
         {
             this.database = database;
             this.accessControl = accessControl;
         }
+
 
         public List<Booking> GetCartItems()
         {
@@ -72,7 +72,6 @@ namespace VOSA_Events.Pages
         {
             Bookings = GetCartItems();
 
-            //Kontrollerar om varukorgen ?r tom innan den genomf?r n?gra ber?kningar
             if (Bookings != null && Bookings.Any())
             {
                 CalculateTotalPrice();
@@ -81,7 +80,7 @@ namespace VOSA_Events.Pages
             }
             else
             {
-                emptyCart = "Your cart is empty!";
+                emptyCart = "Din varukorg är tom!";
             }
         }
 
@@ -102,6 +101,5 @@ namespace VOSA_Events.Pages
                 return RedirectToPage("/Cart");
             }
         }
-
     }
 }

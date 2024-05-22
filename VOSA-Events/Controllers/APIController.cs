@@ -41,7 +41,6 @@ namespace VOSA_Events.Controllers
             }).ToList();
 
             return Ok(result);
-
         }
 
         //Låter oss/admin skapa ett event
