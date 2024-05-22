@@ -93,7 +93,7 @@ namespace VOSA_Events.Pages
             {
                 double totalPrice = CalculateTotalPrice();
 
-                OnPostClearCart();
+                OnPostClearCart(); 
 
                 return RedirectToPage("OrderConfirmation", new { totalPrice = totalPrice });
             }
