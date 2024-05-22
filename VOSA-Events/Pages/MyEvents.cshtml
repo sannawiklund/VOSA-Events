@@ -9,7 +9,7 @@
 
         @if ((Model.BookedEvents != null && Model.BookedEvents.Any()) || (Model.FollowedEvents != null && Model.FollowedEvents.Any()))
         {
-            <div id="section-one">
+@*             <div id="section-one">
             <h2 class="section-title">Dina bokade Mässor</h2>
             @foreach (var booking in Model.BookedEvents)
             {
@@ -19,19 +19,21 @@
                 </ul>
                     <hr>
             }
-            </div>
+            </div> *@
 
             <div id="section-two"> 
             <h2 class="section-title">Dina bevakade Mässor</h2>
             @foreach (var follows in Model.FollowedEvents)
             {
+                <div id="list-item-box">
                 <ul class="followed-events-list">
                     <li class="event-item">@follows.Name</li>
                 </ul>
                 <form method="post" asp-page-handler="UnfollowEvent" asp-route-eventId="@follows.ID" class="unfollow-form">
                     <button type="submit" class="unfollow-button">Sluta följ</button>
                 </form>
-                    <hr>
+
+                </div>
             }
             </div>
         }
