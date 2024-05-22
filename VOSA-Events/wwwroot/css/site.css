@@ -216,6 +216,11 @@ input#searchInput, select#categorySelect, select#dateSelect {
     font-size: 25px;
 }
 
+.show-review {
+
+
+}
+
 p.event-description {
     font-weight: 400;
     font-size: 17px;
