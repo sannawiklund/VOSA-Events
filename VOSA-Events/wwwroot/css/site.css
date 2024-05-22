@@ -271,8 +271,6 @@ button#post-review, button#show-hide {
 }
 
 
-
-
 /* Styla beställningsknappen */
 button.order-button {
     background-color: darkgoldenrod;
@@ -336,9 +334,64 @@ div.rating-options {
 /*------------------------------------------------*/
 
 /*MyEventsPage*/
+#myEvents-container {
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.73);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2em;
+    display: grid;
+    margin: 0 auto;
+    max-width: 800px;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+}
 
+#section-one {
+    grid-column: 1;
+    border: solid;
+    border-radius: 5px;
+    padding: 1em;
+    border-width: thin;
+    background-color: white;
+}
 
+#section-two {
+    grid-column: 2;
+    border: solid;
+    border-radius: 5px;
+    padding: 1em;
+    border-width: thin;
+    background-color: white;
+}
 
+/* Lista över bevakade mässor */
+.followed-events-list, .booked-events-list {
+    list-style-type: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-right: 2.5em;
+}
+
+form.return-to-start-form-event, button.return-to-start-button-event {
+    display: flex;
+    justify-content: center;
+}
+/* Knapp för att sluta följa ett evenemang */
+.unfollow-button {
+    background-color: darkslategrey
+}
+
+/* Meddelande när det inte finns några bokade eller bevakade mässor */
+.no-events-message {
+    /* Ditt CSS här */
+}
 
 
 
